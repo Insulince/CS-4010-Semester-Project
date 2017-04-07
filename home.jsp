@@ -13,15 +13,18 @@
     <input type="hidden" name="action" value="add"/>
 
     <label for="firstName">First Name:</label>
-    <input type="text" name="firstName" id="firstName"/><br/>
+    <input type="text" name="firstName" id="firstName"/>
+    <br/>
 
     <label for="lastName">Last Name:</label>
-    <input type="text" name="lastName" id="lastName"/><br/>
+    <input type="text" name="lastName" id="lastName"/>
+    <br/>
 
     <input type="submit" value="Add me!"/>
 </form>
 
-<br/><p>Press the following button to intentionally go to the error page (not directly, due to an error).</p><br/>
+<br/>
+<p>Press the following button to intentionally go to the error page (not directly, due to an error).</p><br/>
 <form>
     <input type="hidden" name="action" value="someUnknownValue"/>
 

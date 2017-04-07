@@ -1,3 +1,4 @@
+<jsp:useBean id="user" scope="page" type="semester.project.bean.User"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,10 +9,12 @@
 <p>Here is the information that you entered:</p>
 
 <label>First Name:</label>
-<span>${user.firstName}</span><br/>
+<span>${user.firstName}</span>
+<br/>
 
 <label>Last Name:</label>
-<span>${user.lastName}</span><br/>
+<span>${user.lastName}</span>
+<br/>
 
 <p>To repeat this process, click on the Back button in your browser or the Return button shown below.</p>
 <form action="" method="get">
