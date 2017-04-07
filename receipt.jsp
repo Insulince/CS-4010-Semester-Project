@@ -1,4 +1,4 @@
-<jsp:useBean id="user" scope="page" type="semester.project.bean.User"/>
+<%--@elvariable id="user" type="semester.project.bean.User"--%>
 <!DOCTYPE html>
 <html>
 <head>

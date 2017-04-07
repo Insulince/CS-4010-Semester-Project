@@ -17,21 +17,20 @@ public class TestServlet extends HttpServlet {
             action = "join";
         }
 
-        switch (action) {
-            case "join":
-                url = "/home.jsp";
-                break;
-            case "add":
-                String firstName = request.getParameter("firstName");
-                String lastName = request.getParameter("lastName");
-                User user = new User(firstName, lastName);
-                UserDB.insert(user);
-                request.setAttribute("user", user);
-                url = "/receipt.jsp";
-                break;
-            default:
-                url = "/error.jsp";
-                break;
+        if (action.equals("join")) {
+            url = "/home.jsp";
+
+        } else if (action.equals("add")) {
+            String firstName = request.getParameter("firstName");
+            String lastName = request.getParameter("lastName");
+            User user = new User(firstName, lastName);
+            UserDB.insert(user);
+            request.setAttribute("user", user);
+            url = "/receipt.jsp";
+
+        } else {
+            url = "/error.jsp";
+
         }
 
         this.getServletContext().getRequestDispatcher(url).forward(request, response);
