@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <meta charset="utf-8"/>
-<title>Error.jsp</title>
+<title>Error!</title>
 <head>
 </head>
 <body>
