@@ -8,8 +8,11 @@
 <h1>Error!</h1>
 
 <form action="" method="get">
-    <input type="hidden" name="action" value="join"/>
-    <input type="submit" value="Go to Home.jsp"/>
+    <input type="hidden" name="identifier" value="${identifier}"/>
+    <input type="hidden" name="userIdentifier" value="${user.identifier}"/>
+    <input type="hidden" name="action" value="go-to-home"/>
+
+    <input type="submit" value="Return"/>
 </form>
 </body>
 </html>

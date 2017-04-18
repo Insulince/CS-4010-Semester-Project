@@ -5,28 +5,13 @@
 <head>
 </head>
 <body>
-<h1>Welcome!</h1>
-<p>
-    <b>Type your first and last name below.</b>
-</p>
-<form action="testServlet" method="post">
-    <input type="hidden" name="action" value="add"/>
-
-    <label for="firstName">First Name:</label>
-    <input type="text" name="firstName" id="firstName"/>
-    <br/>
-
-    <label for="lastName">Last Name:</label>
-    <input type="text" name="lastName" id="lastName"/>
-    <br/>
-
-    <input type="submit" value="Add me!"/>
-</form>
-
+<h1>${message}</h1>
 <br/>
 <p>Press the following button to intentionally go to the error page (not directly, due to an error).</p><br/>
 <form>
-    <input type="hidden" name="action" value="someUnknownValue"/>
+    <input type="hidden" name="identifier" value="${identifier}"/>
+    <input type="hidden" name="userIdentifier" value="${user.identifier}"/>
+    <input type="hidden" name="action" value="someValue"/>
 
     <input type="submit" value="Error Intentionally"/>
 </form>
