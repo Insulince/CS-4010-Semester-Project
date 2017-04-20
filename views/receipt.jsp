@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8"/>
     <title>Receipt.jsp</title>
+    ${sharedHeaderTags}
 </head>
 <body>
 <p>Here is the information that you entered:</p>

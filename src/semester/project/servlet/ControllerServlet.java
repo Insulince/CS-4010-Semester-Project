@@ -1,6 +1,9 @@
 package semester.project.servlet;
 
+import semester.project.bean.Inventory;
+import semester.project.bean.Item;
 import semester.project.bean.User;
+import semester.project.database.ItemDBController;
 import semester.project.database.UserDBController;
 import semester.project.util.ForwardObject;
 import semester.project.util.Lo;
@@ -21,47 +24,71 @@ public class ControllerServlet extends HttpServlet {
         if (request.getAttribute("authorized").equals("true")) {
             String action = request.getParameter("action");
 
+            currentUser = null;
             String userIdentifier = request.getParameter("userIdentifier");
-            currentUser = userIdentifier == null ? null : UserDBController.getUserWithIdentifier(userIdentifier);
+            if (userIdentifier != null) {
+                currentUser = UserDBController.getUserWithIdentifier(userIdentifier);
+            }
 
-            switch (action) {
-                case "go-to-register":
-                    FORWARD_TO.accept(new ForwardObject("./views/register.jsp", request, response));
-                    break;
-                case "register":
-                    register(request, response);
-                    FORWARD_TO.accept(new ForwardObject("./views/registered.jsp", request, response));
-                    break;
-                case "go-to-login":
-                    FORWARD_TO.accept(new ForwardObject("./views/login.jsp", request, response));
-                    break;
-                case "login":
-                    login(request, response);
-                    if (currentUser != null && !((boolean) request.getAttribute("loginFail"))) {
-                        request.setAttribute("user", currentUser);
+            if (currentUser != null) { //When logged in, these are visible
+                request.setAttribute("user", currentUser);
+                switch (action) {
+                    case "go-to-home":
                         FORWARD_TO.accept(new ForwardObject("./views/home.jsp", request, response));
-                    } else {
+                        break;
+                    case "go-to-store":
+                        request.setAttribute("inventory", new Inventory(ItemDBController.getItems()));
+                        FORWARD_TO.accept(new ForwardObject("./views/store.jsp", request, response));
+                        break;
+                    case "view-item":
+                        String itemIdentifier = request.getParameter("itemIdentifier");
+                        if (itemIdentifier != null && !itemIdentifier.equals("")) {
+                            Item item = ItemDBController.getItemWithIdentifier(itemIdentifier);
+                            if (item != null) {
+                                request.setAttribute("item", item);
+                                FORWARD_TO.accept(new ForwardObject("./views/item.jsp", request, response));
+                            } else {
+                                FORWARD_TO.accept(new ForwardObject("./views/error.jsp", request, response));
+                            }
+                        } else {
+                            FORWARD_TO.accept(new ForwardObject("./views/error.jsp", request, response));
+                        }
+                        break;
+                    default:
+                        FORWARD_TO.accept(new ForwardObject("./views/error.jsp", request, response));
+                        break;
+                }
+            } else {
+                switch (action) { //When not logged in, these are visible
+                    case "go-to-register":
+                        FORWARD_TO.accept(new ForwardObject("./views/register.jsp", request, response));
+                        break;
+                    case "register":
+                        register(request, response);
+                        FORWARD_TO.accept(new ForwardObject("./views/registered.jsp", request, response));
+                        break;
+                    case "go-to-home":
+                    case "go-to-login":
                         FORWARD_TO.accept(new ForwardObject("./views/login.jsp", request, response));
-                    }
-                    break;
-                case "go-to-home":
-                    if (currentUser != null) {
-                        request.setAttribute("user", currentUser);
-                        FORWARD_TO.accept(new ForwardObject("./views/home.jsp", request, response));
-                    } else {
-                        FORWARD_TO.accept(new ForwardObject("./views/login.jsp", request, response));
-                    }
-                    break;
-                default:
-                    if (userIdentifier != null) {
-                        request.setAttribute("user", currentUser);
-                    }
-                    FORWARD_TO.accept(new ForwardObject("./views/error.jsp", request, response));
-                    break;
+                        break;
+                    case "login":
+                        login(request, response);
+                        if (currentUser != null && !((boolean) request.getAttribute("loginFail"))) {
+                            request.setAttribute("user", currentUser);
+                            FORWARD_TO.accept(new ForwardObject("./views/home.jsp", request, response));
+                        } else {
+                            FORWARD_TO.accept(new ForwardObject("./views/login.jsp", request, response));
+                        }
+                        break;
+                    default:
+                        FORWARD_TO.accept(new ForwardObject("./views/error.jsp", request, response));
+                        break;
+                }
             }
         } else {
             FORWARD_TO.accept(new ForwardObject("./views/error.jsp", request, response));
         }
+        currentUser = null;
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

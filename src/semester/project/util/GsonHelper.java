@@ -2,7 +2,6 @@ package semester.project.util;
 
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
-import semester.project.bean.User;
 
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -14,7 +13,7 @@ public class GsonHelper {
     private static final Gson GSON = new Gson();
     private static final boolean DO_NOT_APPEND = false;
 
-    public static synchronized boolean saveObjectsToFile(Object object, String filePath) {
+    public static synchronized boolean saveObjectsToFile(ArrayList object, String filePath) {
         try {
             FileWriter fileWriter = new FileWriter(filePath, DO_NOT_APPEND);
             fileWriter.write(GSON.toJson(object));
@@ -29,7 +28,7 @@ public class GsonHelper {
         return false;
     }
 
-    public static ArrayList<User> getObjectsFromFile(String filePath, Type objectType) {
+    public static ArrayList getObjectsFromFile(String filePath, Type objectType) {
         try {
             JsonReader reader = new JsonReader(new FileReader(filePath));
             return GSON.fromJson(reader, objectType);

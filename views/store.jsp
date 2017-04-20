@@ -1,13 +1,23 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
-    <meta charset="utf-8"/>
-    <title>Home.jsp</title>
+    <title>Store</title>
+    <style>
+        .available {
+            color: green;
+        }
+
+        .unavailable {
+            color: red;
+        }
+    </style>
     ${sharedHeaderTags}
 </head>
 <body>
 <div id="nav">
-    <h1>J<sup>3</sup> Home</h1>
+    <h1>J<sup>3</sup> Store</h1>
     <div class="container">
         <div class="row">
             <div class="col-md-3">
@@ -49,7 +59,28 @@
         </div>
     </div>
 </div>
-<h2>${message}</h2>
-<br/>
+<div>
+    <div class="container">
+        <c:set var="i" value="${0}"/>
+        <c:forEach items="${inventory.items}" var="item">
+            <c:if test="${i % 4 == 0}">
+                <div class="row">
+            </c:if>
+            <div class="col-md-3">
+                <a href="./session?identifier=${identifier}&userIdentifier=${user.identifier}&action=view-item&itemIdentifier=${item.identifier}">
+                    <img src="${pageContext.request.contextPath}/assets/images/${item.imageUrl}" alt="${item.name} image could not be loaded"/>
+                    <p>${item.name}</p>
+                    <p>$${item.price}</p>
+                    <p class="<c:if test="${item.available}">available</c:if><c:if test="${!item.available}">unavailable</c:if>">${item.quantity} in stock</p>
+                    <p>${item.description}</p>
+                </a>
+            </div>
+            <c:if test="${i % 4 == 3}">
+                </div>
+            </c:if>
+            <c:set var="i" value="${i + 1}"/>
+        </c:forEach>
+    </div>
+</div>
 </body>
 </html>

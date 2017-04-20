@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>Title</title>
+    ${sharedHeaderTags}
 </head>
 <body>
 <h1>Login</h1>
@@ -12,7 +13,7 @@
     <p>${message}</p>
 </c:if>
 
-<form action="./" method="get">
+<form action="./session" method="get">
     <input type="hidden" name="identifier" value="${identifier}"/>
     <input type="hidden" name="action" value="login"/>
 
@@ -25,7 +26,7 @@
     <input type="submit" value="Log In"/>
 </form>
 
-<form action="./" method="get">
+<form action="./session" method="get">
     <input type="hidden" name="identifier" value="${identifier}"/>
     <input type="hidden" name="action" value="go-to-register"/>
 

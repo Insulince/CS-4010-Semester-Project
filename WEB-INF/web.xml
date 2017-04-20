@@ -6,7 +6,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>SessionServlet</servlet-name>
-        <url-pattern>/</url-pattern>
+        <url-pattern>/session</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -19,9 +19,8 @@
     </servlet-mapping>
 
     <session-config>
-        <session-timeout>30</session-timeout>
+        <session-timeout>31</session-timeout>
     </session-config>
-
 
     <welcome-file-list>
         <welcome-file>home.jsp</welcome-file>

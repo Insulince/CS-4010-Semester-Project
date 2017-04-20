@@ -25,7 +25,7 @@ public class UserDBController {
 
     ///////////////////////// READ /////////////////////////
     public static synchronized ArrayList<User> getUsers() { //READ
-        return GsonHelper.getObjectsFromFile(PATH, new TypeToken<ArrayList<User>>() {
+        return (ArrayList<User>) GsonHelper.getObjectsFromFile(PATH, new TypeToken<ArrayList<User>>() {
         }.getType());
     }
 

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 import java.util.function.Consumer;
 
 public class SessionServlet extends HttpServlet {
@@ -22,10 +23,19 @@ public class SessionServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Lo.g("\"POST /\" received.");
 
+        request.setAttribute("sharedHeaderTags", "" +
+                "    <link href=\"/SemesterProject/views/main.css\" rel=\"stylesheet\"/>\n" +
+                "    <link href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u\" crossorigin=\"anonymous\"/>\n" +
+                "    <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js\"></script>\n" +
+                "    <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\" integrity=\"sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa\" crossorigin=\"anonymous\"></script>");
+
         final String action = request.getParameter("action");
         Lo.g("Action = \"" + action + "\"");
 
-        if (action == null) {
+        final String identifier = request.getParameter("identifier");
+        Lo.g("Session identifier is \"" + identifier + "\".");
+
+        if ((action == null || action.equals("")) || (identifier == null || identifier.equals(""))) {
             Lo.g("No action was found, therefore this user has no session, creating new session.");
             createNewSession();
 
@@ -36,9 +46,6 @@ public class SessionServlet extends HttpServlet {
             FORWARD_TO.accept(new ForwardObject("./views/login.jsp", request, response));
         } else {
             Lo.g("Action was found, therefore this user already has a session, now validating.");
-
-            String identifier = request.getParameter("identifier");
-            Lo.g("Session identifier is \"" + identifier + "\".");
 
             if (validateSession(identifier)) {
                 Lo.g("Session is valid so authorizing this user.");
@@ -53,8 +60,14 @@ public class SessionServlet extends HttpServlet {
             } else {
                 Lo.g("This session is invalid, so we cannot authorize this user.");
 
-                Lo.g("Forwarding to \"./views/error.jsp\".");
-                FORWARD_TO.accept(new ForwardObject("./views/error.jsp", request, response));
+                String note = request.getParameter("note");
+                if (note == null || !note.equals("leaving-error")) {
+                    Lo.g("Forwarding to \"./views/error.jsp\".");
+                    FORWARD_TO.accept(new ForwardObject("./views/error.jsp", request, response));
+                } else {
+                    Lo.g("User is already on the error page, so sending to \"./views/login.jsp\".");
+                    FORWARD_TO.accept(new ForwardObject("./views/login.jsp", request, response));
+                }
             }
         }
     }

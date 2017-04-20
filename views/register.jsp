@@ -1,10 +1,11 @@
 <html>
 <head>
     <title>Register</title>
+    ${sharedHeaderTags}
 </head>
 <body>
 <h1>Register for a new Account!</h1>
-<form action="./" method="get">
+<form action="./session" method="get">
     <input type="hidden" name="identifier" value="${identifier}"/>
     <input type="hidden" name="action" value="register"/>
 

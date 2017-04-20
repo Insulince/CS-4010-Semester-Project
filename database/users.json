@@ -1,1 +1,38 @@
-[{"identifier":"a","username":"andrew","password":"apple","email":"a@a.a"},{"identifier":"b","username":"brandon","password":"banana","email":"b@b.b"},{"identifier":"c","username":"connor","password":"carrot","email":"c@c.c"},{"identifier":"thzuUOOrUDNBOlJXVsbnUunrVnJtmRVc","username":"derek","password":"dandelion","email":"d@d.d"}]
+[
+  {
+    "identifier": "a",
+    "username": "andrew",
+    "password": "apple",
+    "email": "a@a.a"
+  },
+  {
+    "identifier": "b",
+    "username": "brandon",
+    "password": "banana",
+    "email": "b@b.b"
+  },
+  {
+    "identifier": "c",
+    "username": "connor",
+    "password": "carrot",
+    "email": "c@c.c"
+  },
+  {
+    "identifier": "thzuUOOrUDNBOlJXVsbnUunrVnJtmRVc",
+    "username": "derek",
+    "password": "dandelion",
+    "email": "d@d.d"
+  },
+  {
+    "identifier": "iigQmnVulxMCmdWRSdQdaheUxTmIqDog",
+    "username": "justin",
+    "password": "swag",
+    "email": "justin@reusnow.com"
+  },
+  {
+    "identifier": "FAFABbGJgWqwVUfLyIPIUAMzXaOAMfuZ",
+    "username": "",
+    "password": "",
+    "email": ""
+  }
+]
