@@ -1,4 +1,4 @@
-package semester.project.util;
+package jcubed.util;
 
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;

@@ -1,15 +1,14 @@
-package semester.project.database;
+package jcubed.database;
 
 import com.google.gson.reflect.TypeToken;
-import semester.project.bean.Item;
-import semester.project.util.GsonHelper;
-import semester.project.util.Lo;
+import jcubed.bean.Item;
+import jcubed.util.GsonHelper;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 public class ItemDBController {
-    private static final String PATH = "../webapps/SemesterProject/database/items.json";
+    private static final String PATH = "../webapps/j-cubed/database/items.json";
 //    private static final String PATH = "database/items.json";
 
     public static void main(String[] args) {

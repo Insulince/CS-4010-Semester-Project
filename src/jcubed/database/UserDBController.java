@@ -1,15 +1,15 @@
-package semester.project.database;
+package jcubed.database;
 
 import com.google.gson.reflect.TypeToken;
-import semester.project.bean.User;
-import semester.project.util.GsonHelper;
-import semester.project.util.Lo;
+import jcubed.util.Lo;
+import jcubed.bean.User;
+import jcubed.util.GsonHelper;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class UserDBController {
-            private static final String PATH = "../webapps/SemesterProject/database/users.json";
+            private static final String PATH = "../webapps/j-cubed/database/users.json";
 //    private static final String PATH = "database/users.json";
 
     ///////////////////////// CREATE /////////////////////////

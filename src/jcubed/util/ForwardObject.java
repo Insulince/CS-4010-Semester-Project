@@ -1,4 +1,4 @@
-package semester.project.util;
+package jcubed.util;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

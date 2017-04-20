@@ -1,4 +1,4 @@
-package semester.project.bean;
+package jcubed.bean;
 
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package semester.project.util;
+package jcubed.util;
 
 public class Lo {
     public static void g(String message) {

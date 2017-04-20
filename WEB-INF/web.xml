@@ -2,16 +2,16 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>SessionServlet</servlet-name>
-        <servlet-class>semester.project.servlet.SessionServlet</servlet-class>
+        <servlet-class>jcubed.servlet.SessionServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>SessionServlet</servlet-name>
-        <url-pattern>/session</url-pattern>
+        <url-pattern></url-pattern>
     </servlet-mapping>
 
     <servlet>
         <servlet-name>ControllerServlet</servlet-name>
-        <servlet-class>semester.project.servlet.ControllerServlet</servlet-class>
+        <servlet-class>jcubed.servlet.ControllerServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ControllerServlet</servlet-name>
@@ -21,8 +21,4 @@
     <session-config>
         <session-timeout>31</session-timeout>
     </session-config>
-
-    <welcome-file-list>
-        <welcome-file>home.jsp</welcome-file>
-    </welcome-file-list>
 </web-app>

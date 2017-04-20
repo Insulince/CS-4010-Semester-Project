@@ -1,8 +1,8 @@
-package semester.project.servlet;
+package jcubed.servlet;
 
-import semester.project.util.ForwardObject;
-import semester.project.util.Lo;
-import semester.project.util.Session;
+import jcubed.util.ForwardObject;
+import jcubed.util.Lo;
+import jcubed.util.Session;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Objects;
 import java.util.function.Consumer;
 
 public class SessionServlet extends HttpServlet {
@@ -24,7 +23,7 @@ public class SessionServlet extends HttpServlet {
         Lo.g("\"POST /\" received.");
 
         request.setAttribute("sharedHeaderTags", "" +
-                "    <link href=\"/SemesterProject/views/main.css\" rel=\"stylesheet\"/>\n" +
+                "    <link href=\"/j-cubed/views/main.css\" rel=\"stylesheet\"/>\n" +
                 "    <link href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u\" crossorigin=\"anonymous\"/>\n" +
                 "    <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js\"></script>\n" +
                 "    <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\" integrity=\"sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa\" crossorigin=\"anonymous\"></script>");

@@ -1,6 +1,6 @@
-package semester.project.bean;
+package jcubed.bean;
 
-import semester.project.database.UserDBController;
+import jcubed.database.UserDBController;
 
 import java.io.Serializable;
 import java.util.Random;

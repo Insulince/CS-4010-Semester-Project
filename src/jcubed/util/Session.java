@@ -1,4 +1,4 @@
-package semester.project.util;
+package jcubed.util;
 
 import java.util.Date;
 import java.util.Random;

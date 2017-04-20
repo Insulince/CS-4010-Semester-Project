@@ -1,11 +1,11 @@
-package semester.project.servlet;
+package jcubed.servlet;
 
-import semester.project.bean.Inventory;
-import semester.project.bean.Item;
-import semester.project.bean.User;
-import semester.project.database.ItemDBController;
-import semester.project.database.UserDBController;
-import semester.project.util.ForwardObject;
+import jcubed.util.ForwardObject;
+import jcubed.bean.Inventory;
+import jcubed.bean.Item;
+import jcubed.bean.User;
+import jcubed.database.ItemDBController;
+import jcubed.database.UserDBController;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
