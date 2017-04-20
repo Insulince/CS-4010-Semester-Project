@@ -1,7 +1,6 @@
 package semester.project.bean;
 
 import semester.project.database.ItemDBController;
-import semester.project.database.UserDBController;
 
 import java.io.Serializable;
 import java.util.Random;
@@ -17,6 +16,8 @@ public class Item implements Serializable {
     private String description;
     private boolean available;
     private String imageUrl;
+    private String previousIdentifier;
+    private String nextIdentifier;
 
     public Item(String name, double price, int quantity, String description, String imageUrl) {
         this.identifier = generateRandomIdentifier();
@@ -26,6 +27,16 @@ public class Item implements Serializable {
         this.description = description;
         this.available = this.quantity > 0;
         this.imageUrl = imageUrl;
+
+        Item lastItem = ItemDBController.getLastItem();
+        if (lastItem != null) {
+            this.previousIdentifier = lastItem.getIdentifier();
+            lastItem.setNextIdentifier(this.identifier);
+            ItemDBController.updateItem(lastItem);
+        } else {
+            this.previousIdentifier = null;
+        }
+        this.nextIdentifier = null;
     }
 
     public Item() {
@@ -36,6 +47,8 @@ public class Item implements Serializable {
         this.description = "";
         this.available = false;
         this.imageUrl = "";
+        this.nextIdentifier = null;
+        this.previousIdentifier = null;
     }
 
     public String getIdentifier() {
@@ -88,6 +101,22 @@ public class Item implements Serializable {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public String getPreviousIdentifier() {
+        return previousIdentifier;
+    }
+
+    public void setPreviousIdentifier(String previousIdentifier) {
+        this.previousIdentifier = previousIdentifier;
+    }
+
+    public String getNextIdentifier() {
+        return nextIdentifier;
+    }
+
+    public void setNextIdentifier(String nextIdentifier) {
+        this.nextIdentifier = nextIdentifier;
     }
 
     @Override

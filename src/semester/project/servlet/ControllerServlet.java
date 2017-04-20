@@ -6,7 +6,6 @@ import semester.project.bean.User;
 import semester.project.database.ItemDBController;
 import semester.project.database.UserDBController;
 import semester.project.util.ForwardObject;
-import semester.project.util.Lo;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.function.Consumer;
 
+@SuppressWarnings("Duplicates")
 public class ControllerServlet extends HttpServlet {
     private static final Consumer<ForwardObject> FORWARD_TO = ForwardObject::forwardTo;
     private static User currentUser;
@@ -50,6 +50,35 @@ public class ControllerServlet extends HttpServlet {
                             } else {
                                 FORWARD_TO.accept(new ForwardObject("./views/error.jsp", request, response));
                             }
+                        } else {
+                            FORWARD_TO.accept(new ForwardObject("./views/error.jsp", request, response));
+                        }
+                        break;
+                    case "next-item":
+                        Item nextItem = ItemDBController.getItemWithIdentifier(request.getParameter("nextIdentifier"));
+                        if (nextItem != null) {
+                            request.setAttribute("item", nextItem);
+                            FORWARD_TO.accept(new ForwardObject("./views/item.jsp", request, response));
+                        } else {
+                            request.setAttribute("inventory", new Inventory(ItemDBController.getItems()));
+                            FORWARD_TO.accept(new ForwardObject("./views/store.jsp", request, response));
+                        }
+                        break;
+                    case "previous-item":
+                        Item previousItem = ItemDBController.getItemWithIdentifier(request.getParameter("previousIdentifier"));
+                        if (previousItem != null) {
+                            request.setAttribute("item", previousItem);
+                            FORWARD_TO.accept(new ForwardObject("./views/item.jsp", request, response));
+                        } else {
+                            request.setAttribute("inventory", new Inventory(ItemDBController.getItems()));
+                            FORWARD_TO.accept(new ForwardObject("./views/store.jsp", request, response));
+                        }
+                        break;
+                    case "random":
+                        Item item = ItemDBController.getRandomItem();
+                        if (item != null) {
+                            request.setAttribute("item", item);
+                            FORWARD_TO.accept(new ForwardObject("./views/item.jsp", request, response));
                         } else {
                             FORWARD_TO.accept(new ForwardObject("./views/error.jsp", request, response));
                         }

@@ -12,6 +12,19 @@
         .unavailable {
             color: red;
         }
+
+        .item-image {
+            height: 100%;
+            width: 100%;
+        }
+
+        .item-image-container {
+            height: 250px;
+        }
+
+        a {
+            text-decoration: none;
+        }
     </style>
     ${sharedHeaderTags}
 </head>
@@ -68,7 +81,9 @@
             </c:if>
             <div class="col-md-3">
                 <a href="./session?identifier=${identifier}&userIdentifier=${user.identifier}&action=view-item&itemIdentifier=${item.identifier}">
-                    <img src="${pageContext.request.contextPath}/assets/images/${item.imageUrl}" alt="${item.name} image could not be loaded"/>
+                    <div class="item-image-container">
+                        <img class="item-image" src="${pageContext.request.contextPath}/assets/images/${item.imageUrl}" alt="${item.name} image could not be loaded"/>
+                    </div>
                     <p>${item.name}</p>
                     <p>$${item.price}</p>
                     <p class="<c:if test="${item.available}">available</c:if><c:if test="${!item.available}">unavailable</c:if>">${item.quantity} in stock</p>
