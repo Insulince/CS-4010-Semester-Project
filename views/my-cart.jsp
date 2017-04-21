@@ -26,6 +26,18 @@
         .cart-table * {
             text-align: center;
         }
+
+        .remove-img {
+            height: 25px;
+            width: 25px;
+            position: absolute;
+            top: calc(50% - 13px);
+            left: calc(50% - 13px);
+        }
+
+        .remove-column {
+            position: relative;
+        }
     </style>
 </head>
 <body>
@@ -82,6 +94,15 @@
 
 <h1 id="page-title">My Cart</h1>
 
+<c:choose>
+    <c:when test="${removedFromCart == 'yes'}">
+        ${requestedItem.name} removed from your cart!
+    </c:when>
+    <c:when test="${removedFromCart == 'no'}">
+        ${requestedItem.name} could not be removed from your cart!
+    </c:when>
+</c:choose>
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
@@ -91,6 +112,7 @@
                     <th>Item Name</th>
                     <th>Price</th>
                     <th>Image</th>
+                    <th>Remove</th>
                 </tr>
                 <c:set var="i" value="0"/>
                 <c:set var="totalPrice" value="0"/>
@@ -100,17 +122,22 @@
                     <tr>
                         <td>${i}</td>
                         <td>${item.name}</td>
-                        <td>${item.price}</td>
+                        <td>$${item.price}</td>
                         <td>
                             <div class="item-image-container">
                                 <img class="item-image" src="${pageContext.request.contextPath}/assets/images/${item.imageUrl}" alt="${item.name} image could not be loaded"/>
                             </div>
                         </td>
+                        <td class="remove-column">
+                            <a href="./?identifier=${identifier}&userIdentifier=${user.identifier}&action=remove-item-from-cart&itemIdentifier=${item.identifier}">
+                                <img class="remove-img" src="${pageContext.request.contextPath}/assets/images/x.png" alt="x.png could not be loaded."/>
+                            </a>
+                        </td>
                     </tr>
                 </c:forEach>
                 <tr>
                     <th colspan="2">${i} items</th>
-                    <th colspan="2"><fmt:formatNumber value="${totalPrice}" type="currency"/> total price</th>
+                    <th colspan="3"><fmt:formatNumber value="${totalPrice}" type="currency"/> total price</th>
                 </tr>
             </table>
         </div>

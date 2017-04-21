@@ -4,6 +4,7 @@ import com.google.gson.reflect.TypeToken;
 import jcubed.bean.Item;
 import jcubed.bean.User;
 import jcubed.util.GsonHelper;
+import jcubed.util.Lo;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -81,6 +82,33 @@ public class ItemDBController {
             } else {
                 return false;
             }
+        } else {
+            return false;
+        }
+    }
+
+    public static synchronized boolean removeItemFromCart(Item item, User user) {
+        if (item != null) {
+            ArrayList<Item> usersCart = user.getCart();
+            int i = 0;
+            for (Item userItem : usersCart) {
+                if (userItem.getIdentifier().equals(item.getIdentifier())) {
+                    int newQuantity = item.getQuantity();
+                    ++newQuantity;
+                    item.setQuantity(newQuantity);
+                    updateItem(item);
+
+                    ArrayList<Item> newCart = user.getCart();
+                    newCart.remove(i);
+                    user.setCart(newCart);
+                    UserDBController.updateUser(user);
+
+                    return true;
+                }
+                i++;
+            }
+
+            return false;
         } else {
             return false;
         }

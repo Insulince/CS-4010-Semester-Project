@@ -105,19 +105,32 @@ public class ControllerServlet extends HttpServlet {
                         }
                         request.setAttribute("requestedItem", ItemDBController.getItemWithIdentifier(request.getParameter("itemIdentifier")));
                         request.setAttribute("inventory", new Inventory(ItemDBController.getItems()));
+                        request.setAttribute("user", UserDBController.getUserWithIdentifier(request.getParameter("userIdentifier"))); //Must be re-set so that the changes to the cart take effect.
                         FORWARD_TO.accept(new ForwardObject("./views/store.jsp", request, response));
 
                     }
                     break;
                     case "add-to-cart-from-item": {
                         if (ItemDBController.addItemToCart(ItemDBController.getItemWithIdentifier(request.getParameter("itemIdentifier")), UserDBController.getUserWithIdentifier(request.getParameter("userIdentifier")))) {
-                            request.setAttribute("added-to-cart", "yes");
+                            request.setAttribute("addedToCart", "yes");
                         } else {
-                            request.setAttribute("added-to-cart", "no");
+                            request.setAttribute("addedToCart", "no");
                         }
                         request.setAttribute("requestedItem", ItemDBController.getItemWithIdentifier(request.getParameter("itemIdentifier")));
                         request.setAttribute("item", ItemDBController.getItemWithIdentifier(request.getParameter("itemIdentifier")));
+                        request.setAttribute("user", UserDBController.getUserWithIdentifier(request.getParameter("userIdentifier"))); //Must be re-set so that the changes to the cart take effect.
                         FORWARD_TO.accept(new ForwardObject("./views/item.jsp", request, response));
+                    }
+                    break;
+                    case "remove-item-from-cart": {
+                        if (ItemDBController.removeItemFromCart(ItemDBController.getItemWithIdentifier(request.getParameter("itemIdentifier")), UserDBController.getUserWithIdentifier(request.getParameter("userIdentifier")))) {
+                            request.setAttribute("removedFromCart", "yes");
+                        } else {
+                            request.setAttribute("removedFromCart", "no");
+                        }
+                        request.setAttribute("requestedItem", ItemDBController.getItemWithIdentifier(request.getParameter("itemIdentifier")));
+                        request.setAttribute("user", UserDBController.getUserWithIdentifier(request.getParameter("userIdentifier"))); //Must be re-set so that the changes to the cart take effect.
+                        FORWARD_TO.accept(new ForwardObject("./views/my-cart.jsp", request, response));
                     }
                     break;
                     default: {

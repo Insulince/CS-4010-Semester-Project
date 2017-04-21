@@ -15,6 +15,16 @@ public class User implements Serializable {
     private String password;
     private String email;
     private ArrayList<Item> cart;
+    private String firstName;
+    private String middleName;
+    private String lastName;
+    private String dateOfBirth;
+    private String gender;
+    private String address;
+    private String city;
+    private String state;
+    private String zipCode;
+    private String creditCardNumber;
 
     public User(String username, String password, String email) {
         this.identifier = generateRandomIdentifier();
@@ -22,6 +32,16 @@ public class User implements Serializable {
         this.password = password;
         this.email = email;
         this.cart = new ArrayList<>();
+        this.firstName = "";
+        this.middleName = "";
+        this.lastName = "";
+        this.dateOfBirth = "";
+        this.gender = "";
+        this.address = "";
+        this.city = "";
+        this.state = "";
+        this.zipCode = "";
+        this.creditCardNumber = "";
     }
 
     public User() {
@@ -30,6 +50,16 @@ public class User implements Serializable {
         this.password = "";
         this.email = "";
         this.cart = null;
+        this.firstName = "";
+        this.middleName = "";
+        this.lastName = "";
+        this.dateOfBirth = "";
+        this.gender = "";
+        this.address = "";
+        this.city = "";
+        this.state = "";
+        this.zipCode = "";
+        this.creditCardNumber = "";
     }
 
     public String getIdentifier() {
@@ -66,6 +96,86 @@ public class User implements Serializable {
 
     public void setCart(ArrayList<Item> cart) {
         this.cart = cart;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public String getCreditCardNumber() {
+        return creditCardNumber;
+    }
+
+    public void setCreditCardNumber(String creditCardNumber) {
+        this.creditCardNumber = creditCardNumber;
     }
 
     private static String generateRandomIdentifier() {
