@@ -2,6 +2,7 @@ package jcubed.database;
 
 import com.google.gson.reflect.TypeToken;
 import jcubed.bean.Item;
+import jcubed.bean.User;
 import jcubed.util.GsonHelper;
 
 import java.util.ArrayList;
@@ -60,6 +61,28 @@ public class ItemDBController {
             return items.get(items.size() - 1);
         } else {
             return null;
+        }
+    }
+
+    public static synchronized boolean addItemToCart(Item item, User user) {
+        if (item != null) {
+            if (item.isAvailable()) {
+                int newQuantity = item.getQuantity();
+                --newQuantity;
+                item.setQuantity(newQuantity);
+                updateItem(item);
+
+                ArrayList<Item> newCart = user.getCart();
+                newCart.add(item);
+                user.setCart(newCart);
+                UserDBController.updateUser(user);
+
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
         }
     }
 

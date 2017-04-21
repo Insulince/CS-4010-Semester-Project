@@ -33,14 +33,16 @@ public class ControllerServlet extends HttpServlet {
             if (currentUser != null) { //When logged in, these are visible
                 request.setAttribute("user", currentUser);
                 switch (action) {
-                    case "go-to-home":
+                    case "go-to-home": {
                         FORWARD_TO.accept(new ForwardObject("./views/home.jsp", request, response));
-                        break;
-                    case "go-to-store":
+                    }
+                    break;
+                    case "go-to-store": {
                         request.setAttribute("inventory", new Inventory(ItemDBController.getItems()));
                         FORWARD_TO.accept(new ForwardObject("./views/store.jsp", request, response));
-                        break;
-                    case "view-item":
+                    }
+                    break;
+                    case "view-item": {
                         String itemIdentifier = request.getParameter("itemIdentifier");
                         if (itemIdentifier != null && !itemIdentifier.equals("")) {
                             Item item = ItemDBController.getItemWithIdentifier(itemIdentifier);
@@ -53,8 +55,9 @@ public class ControllerServlet extends HttpServlet {
                         } else {
                             FORWARD_TO.accept(new ForwardObject("./views/error.jsp", request, response));
                         }
-                        break;
-                    case "next-item":
+                    }
+                    break;
+                    case "next-item": {
                         Item nextItem = ItemDBController.getItemWithIdentifier(request.getParameter("nextIdentifier"));
                         if (nextItem != null) {
                             request.setAttribute("item", nextItem);
@@ -63,8 +66,9 @@ public class ControllerServlet extends HttpServlet {
                             request.setAttribute("inventory", new Inventory(ItemDBController.getItems()));
                             FORWARD_TO.accept(new ForwardObject("./views/store.jsp", request, response));
                         }
-                        break;
-                    case "previous-item":
+                    }
+                    break;
+                    case "previous-item": {
                         Item previousItem = ItemDBController.getItemWithIdentifier(request.getParameter("previousIdentifier"));
                         if (previousItem != null) {
                             request.setAttribute("item", previousItem);
@@ -73,8 +77,9 @@ public class ControllerServlet extends HttpServlet {
                             request.setAttribute("inventory", new Inventory(ItemDBController.getItems()));
                             FORWARD_TO.accept(new ForwardObject("./views/store.jsp", request, response));
                         }
-                        break;
-                    case "random":
+                    }
+                    break;
+                    case "random": {
                         Item item = ItemDBController.getRandomItem();
                         if (item != null) {
                             request.setAttribute("item", item);
@@ -82,25 +87,62 @@ public class ControllerServlet extends HttpServlet {
                         } else {
                             FORWARD_TO.accept(new ForwardObject("./views/error.jsp", request, response));
                         }
-                        break;
-                    default:
+                    }
+                    break;
+                    case "go-to-my-account": {
+                        FORWARD_TO.accept(new ForwardObject("./views/my-account.jsp", request, response));
+                    }
+                    break;
+                    case "go-to-my-cart": {
+                        FORWARD_TO.accept(new ForwardObject("./views/my-cart.jsp", request, response));
+                    }
+                    break;
+                    case "add-to-cart-from-store": {
+                        if (ItemDBController.addItemToCart(ItemDBController.getItemWithIdentifier(request.getParameter("itemIdentifier")), UserDBController.getUserWithIdentifier(request.getParameter("userIdentifier")))) {
+                            request.setAttribute("addedToCart", "yes");
+                        } else {
+                            request.setAttribute("addedToCart", "no");
+                        }
+                        request.setAttribute("requestedItem", ItemDBController.getItemWithIdentifier(request.getParameter("itemIdentifier")));
+                        request.setAttribute("inventory", new Inventory(ItemDBController.getItems()));
+                        FORWARD_TO.accept(new ForwardObject("./views/store.jsp", request, response));
+
+                    }
+                    break;
+                    case "add-to-cart-from-item": {
+                        if (ItemDBController.addItemToCart(ItemDBController.getItemWithIdentifier(request.getParameter("itemIdentifier")), UserDBController.getUserWithIdentifier(request.getParameter("userIdentifier")))) {
+                            request.setAttribute("added-to-cart", "yes");
+                        } else {
+                            request.setAttribute("added-to-cart", "no");
+                        }
+                        request.setAttribute("requestedItem", ItemDBController.getItemWithIdentifier(request.getParameter("itemIdentifier")));
+                        request.setAttribute("item", ItemDBController.getItemWithIdentifier(request.getParameter("itemIdentifier")));
+                        FORWARD_TO.accept(new ForwardObject("./views/item.jsp", request, response));
+                    }
+                    break;
+                    default: {
                         FORWARD_TO.accept(new ForwardObject("./views/error.jsp", request, response));
-                        break;
+                    }
+                    break;
                 }
             } else {
                 switch (action) { //When not logged in, these are visible
-                    case "go-to-register":
+                    case "go-to-register": {
                         FORWARD_TO.accept(new ForwardObject("./views/register.jsp", request, response));
-                        break;
-                    case "register":
+                    }
+                    break;
+                    case "register": {
                         register(request, response);
                         FORWARD_TO.accept(new ForwardObject("./views/registered.jsp", request, response));
-                        break;
-                    case "go-to-home":
-                    case "go-to-login":
+                    }
+                    break;
+                    case "go-to-home": {
+                    }
+                    case "go-to-login": {
                         FORWARD_TO.accept(new ForwardObject("./views/login.jsp", request, response));
-                        break;
-                    case "login":
+                    }
+                    break;
+                    case "login": {
                         login(request, response);
                         if (currentUser != null && !((boolean) request.getAttribute("loginFail"))) {
                             request.setAttribute("user", currentUser);
@@ -108,10 +150,12 @@ public class ControllerServlet extends HttpServlet {
                         } else {
                             FORWARD_TO.accept(new ForwardObject("./views/login.jsp", request, response));
                         }
-                        break;
-                    default:
+                    }
+                    break;
+                    default: {
                         FORWARD_TO.accept(new ForwardObject("./views/error.jsp", request, response));
-                        break;
+                    }
+                    break;
                 }
             }
         } else {

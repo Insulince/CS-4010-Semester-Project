@@ -23,7 +23,7 @@ html, body, head, form {
     min-width: 80px;
 
     display: inline-block;
-    border: 5px solid #777777;
+    border: 5px solid #643d41;
     background-color: #e02512;
     color: #690201;
     border-radius: 50%;
@@ -32,4 +32,8 @@ html, body, head, form {
 .nav-button {
     width: 100%;
     height: 50px;
+}
+
+#page-title {
+    margin-top: 30px;
 }

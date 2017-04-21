@@ -1,16 +1,32 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
 <head>
-    <c:choose>
-        <c:when test="${registered}">
-            <title>Registration Successful</title>
-        </c:when>
-        <c:otherwise>
-            <title>Registration Failed</title>
-        </c:otherwise>
-    </c:choose>
+    <title>My Cart</title>
     ${sharedHeaderTags}
+    <style>
+        .item-image {
+            height: 100%;
+            width: 100%;
+            border: solid 2px #aaaaaa
+        }
+
+        .item-image-container {
+            height: 50px;
+            width: 50px;
+            margin: auto;
+        }
+
+        .cart-table {
+            margin-top: 15px;
+        }
+
+        .cart-table * {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 <div id="nav">
@@ -64,33 +80,41 @@
     </div>
 </div>
 
-<c:choose>
-    <c:when test="${registered}">
-        <h1 id="page-title">Registration Successful!</h1>
-        <p>${message}</p>
-        <form action="./" method="get">
-            <input type="hidden" name="identifier" value="${identifier}"/>
-            <input type="hidden" name="action" value="go-to-login"/>
+<h1 id="page-title">My Cart</h1>
 
-            <input type="submit" value="Go to Login"/>
-        </form>
-    </c:when>
-    <c:otherwise>
-        <h1 id="page-title">Registration Failed!</h1>
-        <p>${message}</p>
-        <form action="./" method="get">
-            <input type="hidden" name="identifier" value="${identifier}"/>
-            <input type="hidden" name="action" value="go-to-register"/>
-
-            <input type="submit" value="Try Again"/>
-        </form>
-        <form action="./" method="get">
-            <input type="hidden" name="identifier" value="${identifier}"/>
-            <input type="hidden" name="action" value="go-to-login"/>
-
-            <input type="submit" value="Go to Login">
-        </form>
-    </c:otherwise>
-</c:choose>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <table class="cart-table table table-striped table-bordered table-hover">
+                <tr>
+                    <th>Number</th>
+                    <th>Item Name</th>
+                    <th>Price</th>
+                    <th>Image</th>
+                </tr>
+                <c:set var="i" value="0"/>
+                <c:set var="totalPrice" value="0"/>
+                <c:forEach items="${user.cart}" var="item">
+                    <c:set var="i" value="${i + 1}"/>
+                    <c:set var="totalPrice" value="${totalPrice + item.price}"/>
+                    <tr>
+                        <td>${i}</td>
+                        <td>${item.name}</td>
+                        <td>${item.price}</td>
+                        <td>
+                            <div class="item-image-container">
+                                <img class="item-image" src="${pageContext.request.contextPath}/assets/images/${item.imageUrl}" alt="${item.name} image could not be loaded"/>
+                            </div>
+                        </td>
+                    </tr>
+                </c:forEach>
+                <tr>
+                    <th colspan="2">${i} items</th>
+                    <th colspan="2"><fmt:formatNumber value="${totalPrice}" type="currency"/> total price</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
 </body>
 </html>

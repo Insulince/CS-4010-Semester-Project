@@ -77,6 +77,7 @@ public class Item implements Serializable {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+        this.setAvailable(this.quantity > 0);
     }
 
     public String getDescription() {

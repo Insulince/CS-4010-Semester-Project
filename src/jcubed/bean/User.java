@@ -3,6 +3,7 @@ package jcubed.bean;
 import jcubed.database.UserDBController;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.stream.Collectors;
 
@@ -13,12 +14,14 @@ public class User implements Serializable {
     private String username;
     private String password;
     private String email;
+    private ArrayList<Item> cart;
 
     public User(String username, String password, String email) {
         this.identifier = generateRandomIdentifier();
         this.username = username;
         this.password = password;
         this.email = email;
+        this.cart = new ArrayList<>();
     }
 
     public User() {
@@ -26,6 +29,7 @@ public class User implements Serializable {
         this.username = "";
         this.password = "";
         this.email = "";
+        this.cart = null;
     }
 
     public String getIdentifier() {
@@ -56,14 +60,12 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "identifier=\"" + identifier + "\"" +
-                ", username=\"" + username + "\"" +
-                ", password=\"" + password + "\"" +
-                ", email=\"" + email + "\"" +
-                "}";
+    public ArrayList<Item> getCart() {
+        return cart;
+    }
+
+    public void setCart(ArrayList<Item> cart) {
+        this.cart = cart;
     }
 
     private static String generateRandomIdentifier() {
