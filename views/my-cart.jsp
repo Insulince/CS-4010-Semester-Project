@@ -38,6 +38,14 @@
         .remove-column {
             position: relative;
         }
+
+        .available {
+            color: green;
+        }
+
+        .unavailable {
+            color: red;
+        }
     </style>
 </head>
 <body>
@@ -96,10 +104,10 @@
 
 <c:choose>
     <c:when test="${removedFromCart == 'yes'}">
-        ${requestedItem.name} removed from your cart!
+        <p class="available">${requestedItem.name} removed from your cart!</p>
     </c:when>
     <c:when test="${removedFromCart == 'no'}">
-        ${requestedItem.name} could not be removed from your cart!
+        <p class="unavailable"> ${requestedItem.name} could not be removed from your cart!</p>
     </c:when>
 </c:choose>
 

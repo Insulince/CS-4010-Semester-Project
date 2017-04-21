@@ -46,8 +46,8 @@
         }
 
         #item-image-container {
-            height: 500px;
-            width: 500px;
+            height: 50vh;
+            width: 100%;
         }
 
         #item-wrapper {
@@ -56,6 +56,46 @@
             padding: 10px;
             margin-bottom: 30px;
             background-color: #dddddd;
+        }
+
+        #details-wrapper {
+            width: 100%;
+            height: 50vh;
+            border: 1px solid black;
+        }
+
+        #price, #quantity {
+            font-size: 2.2em;
+        }
+
+        #description {
+            font-size: 1.5em;
+        }
+
+        #price-quantity-container {
+            padding-top: 8%;
+            height: 30%;
+        }
+
+        #description-container {
+            height: 45%;
+        }
+
+        #cart-container {
+            height: 25%;
+            padding: 10px;
+        }
+
+        .cart-button {
+            height: 80%;
+        }
+
+        .available {
+            color: green;
+        }
+
+        .unavailable {
+            color: red;
         }
     </style>
 </head>
@@ -137,10 +177,10 @@
 
 <c:choose>
     <c:when test="${addedToCart == 'yes'}">
-        ${requestedItem.name} added to your cart!
+        <p class="available">${requestedItem.name} added to your cart!</p>
     </c:when>
     <c:when test="${addedToCart == 'no'}">
-        ${requestedItem.name} could not be added to your cart!
+        <p class="unavailable">${requestedItem.name} could not be added to your cart!</p>
     </c:when>
 </c:choose>
 
@@ -148,11 +188,53 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div id="item-wrapper">
-                <div id="item-image-container">
-                    <img id="item-image" src="${pageContext.request.contextPath}/assets/images/${item.imageUrl}" alt="${item.name} image could not be loaded"/>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div id="item-image-container">
+                                <img id="item-image" src="${pageContext.request.contextPath}/assets/images/${item.imageUrl}" alt="${item.name} image could not be loaded"/>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div id="details-wrapper" class="container-fluid">
+                                <div class="row" id="price-quantity-container">
+                                    <div class="col-md-6">
+                                        <p id="price">$${item.price}</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p id="quantity"><b class="<c:if test="${item.available}">available</c:if><c:if test="${!item.available}">unavailable</c:if>">${item.quantity}</b> in stock</p>
+                                    </div>
+                                </div>
+                                <div class="row" id="description-container">
+                                    <div class="col-md-12">
+                                        <p id="description">Description: ${item.description}</p>
+                                    </div>
+                                </div>
+                                <div class="row" id="cart-container">
+                                    <div class="col-md-8">
+                                        <form action="./" method="get">
+                                            <input type="hidden" name="identifier" value="${identifier}"/>
+                                            <input type="hidden" name="userIdentifier" value="${user.identifier}"/>
+                                            <input type="hidden" name="itemIdentifier" value="${item.identifier}"/>
+                                            <input type="hidden" name="action" value="add-to-cart-from-item"/>
+
+                                            <input class="cart-button nav-button btn btn-default" type="submit" value="Add to Cart" <c:if test="${item.quantity == 0}">disabled</c:if>/>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <form action="./" method="get">
+                                            <input type="hidden" name="identifier" value="${identifier}"/>
+                                            <input type="hidden" name="userIdentifier" value="${user.identifier}"/>
+                                            <input type="hidden" name="action" value="go-to-my-cart"/>
+
+                                            <input class="cart-button nav-button btn btn-default" type="submit" value="View Cart"/>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <p>${item.quantity}</p>
-                <p>${item.price}</p>
             </div>
         </div>
     </div>

@@ -8,7 +8,9 @@ import java.util.stream.Collectors;
 
 public class Item implements Serializable {
     private static final int ITEM_IDENTIFIER_LENGTH = 32;
+    private static int NUM_ITEMS = 0;
 
+    private final int id;
     private final String identifier;
     private String name;
     private double price;
@@ -20,6 +22,8 @@ public class Item implements Serializable {
     private String nextIdentifier;
 
     public Item(String name, double price, int quantity, String description, String imageUrl) {
+        NUM_ITEMS++;
+        this.id = NUM_ITEMS;
         this.identifier = generateRandomIdentifier();
         this.name = name;
         this.price = price;
@@ -40,6 +44,7 @@ public class Item implements Serializable {
     }
 
     public Item() {
+        this.id = 0;
         this.identifier = "";
         this.name = "";
         this.price = 0;
@@ -49,6 +54,10 @@ public class Item implements Serializable {
         this.imageUrl = "";
         this.nextIdentifier = null;
         this.previousIdentifier = null;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getIdentifier() {

@@ -107,10 +107,10 @@
 
 <c:choose>
     <c:when test="${addedToCart == 'yes'}">
-        ${requestedItem.name} added to your cart!
+        <p class="available">${requestedItem.name} added to your cart!</p>
     </c:when>
     <c:when test="${addedToCart == 'no'}">
-        ${requestedItem.name} could not be added to your cart!
+        <p class="unavailable">${requestedItem.name} could not be added to your cart!</p>
     </c:when>
 </c:choose>
 
