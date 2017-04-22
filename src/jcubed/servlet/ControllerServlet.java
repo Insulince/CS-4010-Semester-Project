@@ -21,7 +21,13 @@ public class ControllerServlet extends HttpServlet {
     private static User currentUser;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if (request.getAttribute("authorized").equals("true")) {
+        request.setAttribute("sharedHeaderTags", "" +
+                "    <link href=\"/j-cubed/views/main.css\" rel=\"stylesheet\"/>\n" +
+                "    <link href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u\" crossorigin=\"anonymous\"/>\n" +
+                "    <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js\"></script>\n" +
+                "    <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\" integrity=\"sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa\" crossorigin=\"anonymous\"></script>");
+
+        if (request.getAttribute("authorized") != null && request.getAttribute("authorized").equals("true")) {
             String action = request.getParameter("action");
 
             currentUser = null;
