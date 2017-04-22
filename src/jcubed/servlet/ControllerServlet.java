@@ -278,11 +278,11 @@ public class ControllerServlet extends HttpServlet {
                 request.setAttribute("message", "Welcome " + username);
             } else {
                 request.setAttribute("loginFail", true);
-                request.setAttribute("message", "Invalid username and/or password! (pass)");
+                request.setAttribute("message", "Invalid username and/or password!");
             }
         } else {
             request.setAttribute("loginFail", true);
-            request.setAttribute("message", "Invalid username and/or password! (user)");
+            request.setAttribute("message", "Invalid username and/or password!");
         }
     }
 }

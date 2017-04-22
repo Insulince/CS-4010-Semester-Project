@@ -11,6 +11,11 @@
         </c:otherwise>
     </c:choose>
     ${sharedHeaderTags}
+    <style>
+        .content {
+            margin-top: 15px;
+        }
+    </style>
 </head>
 <body>
 <div id="nav">
@@ -64,33 +69,54 @@
     </div>
 </div>
 
-<c:choose>
-    <c:when test="${registered}">
-        <h1 id="page-title">Registration Successful!</h1>
-        <p>${message}</p>
-        <form action="./" method="get">
-            <input type="hidden" name="identifier" value="${identifier}"/>
-            <input type="hidden" name="action" value="go-to-login"/>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <c:choose>
+                <c:when test="${registered}">
+                    <h1 id="page-title">Registration Successful!</h1>
 
-            <input type="submit" value="Go to Login"/>
-        </form>
-    </c:when>
-    <c:otherwise>
-        <h1 id="page-title">Registration Failed!</h1>
-        <p>${message}</p>
-        <form action="./" method="get">
-            <input type="hidden" name="identifier" value="${identifier}"/>
-            <input type="hidden" name="action" value="go-to-register"/>
+                    <div class="content">
+                        <p>${message}</p>
+                        <form action="./" method="get">
+                            <input type="hidden" name="identifier" value="${identifier}"/>
+                            <input type="hidden" name="action" value="go-to-login"/>
 
-            <input type="submit" value="Try Again"/>
-        </form>
-        <form action="./" method="get">
-            <input type="hidden" name="identifier" value="${identifier}"/>
-            <input type="hidden" name="action" value="go-to-login"/>
+                            <input class="btn btn-primary" type="submit" value="Go to Login"/>
+                        </form>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <h1 id="page-title">Registration Failed!</h1>
 
-            <input type="submit" value="Go to Login">
-        </form>
-    </c:otherwise>
-</c:choose>
+                    <div class="content">
+                        <p>${message}</p>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <form action="./" method="get">
+                                        <input type="hidden" name="identifier" value="${identifier}"/>
+                                        <input type="hidden" name="action" value="go-to-register"/>
+
+                                        <input class="btn btn-success" type="submit" value="Try Again"/>
+                                    </form>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <form action="./" method="get">
+                                        <input type="hidden" name="identifier" value="${identifier}"/>
+                                        <input type="hidden" name="action" value="go-to-login"/>
+
+                                        <input class="btn btn-primary" type="submit" value="Go to Login">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </c:otherwise>
+            </c:choose>
+        </div>
+    </div>
+</div>
 </body>
 </html>

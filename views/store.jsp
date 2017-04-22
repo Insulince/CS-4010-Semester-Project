@@ -30,7 +30,7 @@
         }
 
         #store-wrapper {
-            padding-top: 10px;
+            padding-top: 15px;
         }
 
         .item-wrapper {

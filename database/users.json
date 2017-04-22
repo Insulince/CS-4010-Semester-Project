@@ -1,38 +1,21 @@
 [
   {
-    "identifier": "JKPBILibxzMlBVjDDBkLUXAgUWWtvgKL",
-    "username": "jfizz",
-    "password": "swag",
-    "email": "asdf@asdf.x",
-    "cart": [],
-    "firstName": "",
-    "middleName": "",
-    "lastName": "",
-    "dateOfBirth": "",
-    "gender": "",
-    "address": "1 asdf ln",
-    "city": "st charles",
-    "state": "missouri",
-    "zipCode": "45215",
-    "creditCardNumber": ""
-  },
-  {
-    "identifier": "kXyDuFtlVRXJrWdcNWzKImpMvUbUuoew",
+    "identifier": "VatdGrpiLpYEhowiHzZJCmzunVlqDCuE",
     "username": "justin",
     "password": "swag",
-    "email": "asdf@asdf.asdf",
+    "email": "justinreusnow@gmail.com",
     "cart": [
       {
-        "id": 2,
-        "identifier": "vzatZYUCrYCecsuRBgqketIbURaibWzF",
-        "name": "2x2 Pyraminx",
-        "price": 12.99,
-        "quantity": 3,
-        "description": "While this puzzle is possible to \"scramble\", you will find that there are only three moving parts and should be able to solve it very easilly! Still a great addition for collectors!",
+        "id": 8,
+        "identifier": "EiNEBCVmBRoxGNrUqMebPEBGlpaToWMC",
+        "name": "Rubik\u0027s Cube (3x3 Cube)",
+        "price": 9.99,
+        "quantity": 44,
+        "description": "The traditional twisty puzzle from the \u002780s. Twist it and watch as the colors get increasingly mixed up then test your skill at unscrambling it.",
         "available": true,
-        "imageUrl": "pyraminx-2x2.jpg",
-        "previousIdentifier": "VKkDghUceYmqnPwaEmJVfGFWTzPfeEvA",
-        "nextIdentifier": "CKIMcBTwYhemSFFpQEUEESmTsVhrFKeo"
+        "imageUrl": "rubiks-cube.jpg",
+        "previousIdentifier": "ajTVYiekhelLssyCBpJyvNuBeiwGYIYb",
+        "nextIdentifier": "sjEkKGOzQQQSagMiruXIkRtbsIbZnbRI"
       }
     ],
     "firstName": "",
@@ -40,10 +23,10 @@
     "lastName": "",
     "dateOfBirth": "",
     "gender": "",
-    "address": "1 asdf st",
-    "city": "st louis",
-    "state": "missouri",
-    "zipCode": "54552",
+    "address": "",
+    "city": "",
+    "state": "",
+    "zipCode": "",
     "creditCardNumber": ""
   }
 ]

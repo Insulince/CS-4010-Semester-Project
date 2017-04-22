@@ -25,6 +25,10 @@
         .right-align {
             text-align: right;
         }
+
+        .content {
+            padding-top: 15px;
+        }
     </style>
     <script>
         function validateForm() {
@@ -32,6 +36,11 @@
 
             var valid = true;
             var errors = "Errors:";
+
+            if (form["email"] == "") {
+                valid = false;
+                errors += "\n\u2022 Email can't be blank."
+            }
 
             if (form["zipCode"].value != "") {
                 var zipCode = form["zipCode"].value;
@@ -142,7 +151,7 @@
 
 <h1 id="page-title">My Account</h1>
 
-<div class="container-fluid">
+<div class="content container-fluid">
     <div class="row">
         <c:choose>
             <c:when test='${mode == "view"}'>
