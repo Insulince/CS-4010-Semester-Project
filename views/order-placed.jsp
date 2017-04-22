@@ -73,7 +73,7 @@
 <div class="content container-fluid">
     <div class="row">
         <div class="col-md-4 col-md-offset-2">
-            <p><b>Your order has been placed and is on its way! Give us 1-2 business days for processing and packaging, then 3-10 business days for shipping (depending on your location).</b></p>
+            <h4><b>Your order has been placed and is on its way! Give us 1-2 business days for processing and packaging, then 3-10 business days for shipping (depending on your location).</b></h4>
         </div>
         <div class="col-md-4">
             <p>You ordered:</p>

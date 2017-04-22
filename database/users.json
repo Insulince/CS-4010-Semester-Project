@@ -1,1 +1,49 @@
-[{"identifier":"VxKMOGsKJkCfPiBxRSgWnvSJhowDNqCE","username":"justin","password":"swag","email":"fsda@sdf","cart":[],"firstName":"justin","middleName":"is","lastName":"cool","dateOfBirth":"","gender":"z","address":"43 west swag","city":"swag","state":"swag state","zipCode":"64542","creditCardNumber":"1154236587456512"}]
+[
+  {
+    "identifier": "JKPBILibxzMlBVjDDBkLUXAgUWWtvgKL",
+    "username": "jfizz",
+    "password": "swag",
+    "email": "asdf@asdf.x",
+    "cart": [],
+    "firstName": "",
+    "middleName": "",
+    "lastName": "",
+    "dateOfBirth": "",
+    "gender": "",
+    "address": "1 asdf ln",
+    "city": "st charles",
+    "state": "missouri",
+    "zipCode": "45215",
+    "creditCardNumber": ""
+  },
+  {
+    "identifier": "kXyDuFtlVRXJrWdcNWzKImpMvUbUuoew",
+    "username": "justin",
+    "password": "swag",
+    "email": "asdf@asdf.asdf",
+    "cart": [
+      {
+        "id": 2,
+        "identifier": "vzatZYUCrYCecsuRBgqketIbURaibWzF",
+        "name": "2x2 Pyraminx",
+        "price": 12.99,
+        "quantity": 3,
+        "description": "While this puzzle is possible to \"scramble\", you will find that there are only three moving parts and should be able to solve it very easilly! Still a great addition for collectors!",
+        "available": true,
+        "imageUrl": "pyraminx-2x2.jpg",
+        "previousIdentifier": "VKkDghUceYmqnPwaEmJVfGFWTzPfeEvA",
+        "nextIdentifier": "CKIMcBTwYhemSFFpQEUEESmTsVhrFKeo"
+      }
+    ],
+    "firstName": "",
+    "middleName": "",
+    "lastName": "",
+    "dateOfBirth": "",
+    "gender": "",
+    "address": "1 asdf st",
+    "city": "st louis",
+    "state": "missouri",
+    "zipCode": "54552",
+    "creditCardNumber": ""
+  }
+]

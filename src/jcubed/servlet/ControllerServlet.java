@@ -160,6 +160,11 @@ public class ControllerServlet extends HttpServlet {
                         FORWARD_TO.accept(new ForwardObject("./views/my-account.jsp", request, response));
                     }
                     break;
+                    case "logout": {
+                        request.setAttribute("user", null);
+                        FORWARD_TO.accept(new ForwardObject("./views/login.jsp", request, response));
+                    }
+                    break;
                     default: {
                         FORWARD_TO.accept(new ForwardObject("./views/error.jsp", request, response));
                     }
