@@ -53,6 +53,12 @@ public class ItemDBController {
         return items.get(new Random().nextInt(items.size()));
     }
 
+    public static synchronized Item getRandomItem(long seed) {
+        ArrayList<Item> items = getItems();
+
+        return items.get(new Random(seed).nextInt(items.size()));
+    }
+
     public static synchronized Item getLastItem() {
         ArrayList<Item> items = getItems();
 

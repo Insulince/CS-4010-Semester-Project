@@ -13,11 +13,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.function.Consumer;
 
 @SuppressWarnings("Duplicates")
 public class ControllerServlet extends HttpServlet {
     private static final Consumer<ForwardObject> FORWARD_TO = ForwardObject::forwardTo;
+    private static final long startOfFeatureCycleDate = new Date(1492837200000L).getTime() / 86400000; //Days between 1970-01-01 12:00:00AM and 2017-04-22 12:00:00AM
     private static User currentUser;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -40,6 +42,7 @@ public class ControllerServlet extends HttpServlet {
                 request.setAttribute("user", currentUser);
                 switch (action) {
                     case "go-to-home": {
+                        getHomeDetails(request);
                         FORWARD_TO.accept(new ForwardObject("./views/home.jsp", request, response));
                     }
                     break;
@@ -129,6 +132,18 @@ public class ControllerServlet extends HttpServlet {
                         FORWARD_TO.accept(new ForwardObject("./views/item.jsp", request, response));
                     }
                     break;
+                    case "add-to-cart-from-home": {
+                        if (UserDBController.addItemToCart(ItemDBController.getItemWithIdentifier(request.getParameter("itemIdentifier")), UserDBController.getUserWithIdentifier(request.getParameter("userIdentifier")))) {
+                            request.setAttribute("addedToCart", "yes");
+                        } else {
+                            request.setAttribute("addedToCart", "no");
+                        }
+                        request.setAttribute("requestedItem", ItemDBController.getItemWithIdentifier(request.getParameter("itemIdentifier")));
+                        getHomeDetails(request);
+                        request.setAttribute("user", UserDBController.getUserWithIdentifier(request.getParameter("userIdentifier"))); //Must be re-set so that the changes to the cart take effect immediately.
+                        FORWARD_TO.accept(new ForwardObject("./views/home.jsp", request, response));
+                    }
+                    break;
                     case "remove-item-from-cart": {
                         if (UserDBController.removeItemFromCart(ItemDBController.getItemWithIdentifier(request.getParameter("itemIdentifier")), UserDBController.getUserWithIdentifier(request.getParameter("userIdentifier")))) {
                             request.setAttribute("removedFromCart", "yes");
@@ -197,6 +212,7 @@ public class ControllerServlet extends HttpServlet {
                         login(request, response);
                         if (currentUser != null && !((boolean) request.getAttribute("loginFail"))) {
                             request.setAttribute("user", currentUser);
+                            getHomeDetails(request);
                             FORWARD_TO.accept(new ForwardObject("./views/home.jsp", request, response));
                         } else {
                             FORWARD_TO.accept(new ForwardObject("./views/login.jsp", request, response));
@@ -217,6 +233,10 @@ public class ControllerServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
+    }
+
+    private void getHomeDetails(HttpServletRequest request) {
+        request.setAttribute("dailyItem", ItemDBController.getRandomItem(new Date().getTime() / 86400000 - startOfFeatureCycleDate));
     }
 
     private void updateInformationFromMyAccount(HttpServletRequest request) {
