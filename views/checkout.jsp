@@ -29,39 +29,78 @@
             var errors = "Errors:";
 
             if (form["name"].value == "") {
-                errors += "\n• Name cannot be blank.";
+                errors += "\n\u2022 Name cannot be blank.";
                 valid = false;
             }
 
             if (form["address"].value == "") {
-                errors += "\n• Address cannot be blank.";
+                errors += "\n\u2022 Address cannot be blank.";
                 valid = false;
             }
 
             if (form["city"].value == "") {
-                errors += "\n• City cannot be blank.";
+                errors += "\n\u2022 City cannot be blank.";
                 valid = false;
             }
 
             if (form["state"].value == "") {
-                errors += "\n• State cannot be blank.";
+                errors += "\n\u2022 State cannot be blank.";
                 valid = false;
             }
 
             if (form["zip-code"].value == "") {
-                errors += "\n• Zip Code cannot be blank.";
+                errors += "\n\u2022 Zip Code cannot be blank.";
                 valid = false;
+            } else {
+                var zipCode = form["zip-code"].value;
+
+                if (zipCode.length != 5) {
+                    errors += "\n\u2022 Zip Code must be 5 characters long.";
+                    valid = false;
+                } else {
+                    for (var i = 0; i < zipCode.length; i++) {
+                        if (isNaN(zipCode[i])) {
+                            errors += "\n\u2022 Zip Code can't contain letters.";
+                            valid = false;
+                            break;
+                        }
+                    }
+                }
             }
 
             if (form["credit-card-number"].value == "") {
-                errors += "\n• Credit Card Number cannot be blank.";
+                errors += "\n\u2022 Credit Card Number cannot be blank.";
                 valid = false;
             } else {
-                if (form["credit-card-number"].value.length != 16) {
-                    errors += "\n• Credit Card Number must be 16 characters long.";
-                    valid = false;
+                var creditCardNumber = form["credit-card-number"].value;
+                var defaultNumber = false;
+
+                for (var i = 0; i < creditCardNumber.length; i++) {
+                    if (creditCardNumber[i] == "\u2022") {
+                        defaultNumber = true;
+                        break;
+                    }
+                }
+                if (!defaultNumber) {
+                    if (creditCardNumber.length != 16) {
+                        errors += "\n\u2022 Credit Card Number must be 16 characters long.";
+                        valid = false;
+                    } else {
+                        for (var i = 0; i < creditCardNumber.length; i++) {
+                            if (isNaN(creditCardNumber[i])) {
+                                errors += "\n\u2022 Credit Card Numbers can't contain letters.";
+                                valid = false;
+                                break;
+                            }
+                        }
+                    }
+                } else {
+                    if (valid) {
+                        form["credit-card-number"].value = "0000000000000000";
+                    }
                 }
             }
+
 
             if (!valid) {
                 alert(errors);

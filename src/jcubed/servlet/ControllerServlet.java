@@ -5,6 +5,7 @@ import jcubed.bean.Item;
 import jcubed.bean.User;
 import jcubed.database.ItemDBController;
 import jcubed.database.UserDBController;
+import jcubed.util.Lo;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -89,6 +90,7 @@ public class ControllerServlet extends HttpServlet {
                     }
                     break;
                     case "go-to-my-account": {
+                        request.setAttribute("mode", "view");
                         FORWARD_TO.accept(new ForwardObject("./views/my-account.jsp", request, response));
                     }
                     break;
@@ -138,12 +140,24 @@ public class ControllerServlet extends HttpServlet {
                     break;
                     case "checkout": {
                         if (request.getParameter("updateInformation") != null) {
-                            updateInformation(request);
+                            updateInformationFromCheckout(request);
                         }
                         request.setAttribute("orderedItems", currentUser.getCart());
                         UserDBController.emptyCart(currentUser);
                         request.setAttribute("user", currentUser); //Must be re-set so that the changes to the user's information and/or cart take effect immediately.
                         FORWARD_TO.accept(new ForwardObject("./views/order-placed.jsp", request, response));
+                    }
+                    break;
+                    case "edit-my-account": {
+                        request.setAttribute("mode", "edit");
+                        FORWARD_TO.accept(new ForwardObject("./views/my-account.jsp", request, response));
+                    }
+                    break;
+                    case "save-my-account": {
+                        updateInformationFromMyAccount(request);
+                        request.setAttribute("mode", "view");
+                        request.setAttribute("message", "Details updated!");
+                        FORWARD_TO.accept(new ForwardObject("./views/my-account.jsp", request, response));
                     }
                     break;
                     default: {
@@ -194,7 +208,23 @@ public class ControllerServlet extends HttpServlet {
         doPost(request, response);
     }
 
-    private void updateInformation(HttpServletRequest request) {
+    private void updateInformationFromMyAccount(HttpServletRequest request) {
+        currentUser.setEmail(request.getParameter("email"));
+        currentUser.setFirstName(request.getParameter("firstName"));
+        currentUser.setMiddleName(request.getParameter("middleName"));
+        currentUser.setLastName(request.getParameter("lastName"));
+        currentUser.setDateOfBirth(request.getParameter("dateOfBirth"));
+        currentUser.setGender(request.getParameter("gender"));
+        currentUser.setAddress(request.getParameter("address"));
+        currentUser.setCity(request.getParameter("city"));
+        currentUser.setState(request.getParameter("state"));
+        currentUser.setZipCode(request.getParameter("zipCode"));
+        currentUser.setCreditCardNumber(request.getParameter("creditCardNumber") != null ? (!request.getParameter("creditCardNumber").equals("0000000000000000") ? request.getParameter("creditCardNumber") : currentUser.getCreditCardNumber()) : currentUser.getCreditCardNumber());
+        UserDBController.updateUser(currentUser);
+    }
+
+    private void updateInformationFromCheckout(HttpServletRequest request) {
+        Lo.g(request.getParameter("address"));
         currentUser.setAddress(request.getParameter("address"));
         currentUser.setCity(request.getParameter("city"));
         currentUser.setState(request.getParameter("state"));
