@@ -67,55 +67,6 @@ public class ItemDBController {
         }
     }
 
-    public static synchronized boolean addItemToCart(Item item, User user) {
-        if (item != null) {
-            if (item.isAvailable()) {
-                int newQuantity = item.getQuantity();
-                --newQuantity;
-                item.setQuantity(newQuantity);
-                updateItem(item);
-
-                ArrayList<Item> newCart = user.getCart();
-                newCart.add(item);
-                user.setCart(newCart);
-                UserDBController.updateUser(user);
-
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
-    }
-
-    public static synchronized boolean removeItemFromCart(Item item, User user) {
-        if (item != null) {
-            ArrayList<Item> usersCart = user.getCart();
-            int i = 0;
-            for (Item userItem : usersCart) {
-                if (userItem.getIdentifier().equals(item.getIdentifier())) {
-                    int newQuantity = item.getQuantity();
-                    ++newQuantity;
-                    item.setQuantity(newQuantity);
-                    updateItem(item);
-
-                    ArrayList<Item> newCart = user.getCart();
-                    newCart.remove(i);
-                    user.setCart(newCart);
-                    UserDBController.updateUser(user);
-
-                    return true;
-                }
-                i++;
-            }
-
-            return false;
-        } else {
-            return false;
-        }
-    }
-
     public static synchronized ArrayList<Item> organizeById(ArrayList<Item> items) {
         items.sort((item1, item2) -> item1.getId() < item2.getId() ? -1 : 1);
         return items;

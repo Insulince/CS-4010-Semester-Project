@@ -7,6 +7,10 @@ html, body, head, form {
     margin: 0;
 }
 
+body {
+    background-color: #f5f5f5 !important;
+}
+
 #nav {
     padding-top: 20px;
     border-bottom: 5px solid #777777;

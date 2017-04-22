@@ -4,6 +4,13 @@
     <meta charset="utf-8"/>
     <title>Error!</title>
     ${sharedHeaderTags}
+    <style>
+        .go-home-button {
+            width: 10vw;
+            height: 10vh;
+            margin-top: 25px;
+        }
+    </style>
 </head>
 <body>
 <div id="nav">
@@ -23,7 +30,7 @@
                     <input type="hidden" name="userIdentifier" value="${user.identifier}"/>
                     <input type="hidden" name="action" value="go-to-store"/>
 
-                    <input class="nav-button btn btn-default" type="submit" value="Store"/>
+                    <input class="nav-button btn btn-primary" type="submit" value="Store" disabled/>
                 </form>
             </div>
             <div class="col-md-3">
@@ -32,7 +39,7 @@
                     <input type="hidden" name="userIdentifier" value="${user.identifier}"/>
                     <input type="hidden" name="action" value="random"/>
 
-                    <input class="nav-button btn btn-default" type="submit" value="Random Item"/>
+                    <input class="nav-button btn btn-primary" type="submit" value="Random Item" disabled/>
                 </form>
             </div>
             <div class="col-md-3">
@@ -41,7 +48,7 @@
                     <input type="hidden" name="userIdentifier" value="${user.identifier}"/>
                     <input type="hidden" name="action" value="go-to-my-cart"/>
 
-                    <input class="nav-button btn btn-default" type="submit" value="My Cart"/>
+                    <input class="nav-button btn btn-primary" type="submit" value="My Cart" disabled/>
                 </form>
             </div>
             <div class="col-md-3">
@@ -50,7 +57,7 @@
                     <input type="hidden" name="userIdentifier" value="${user.identifier}"/>
                     <input type="hidden" name="action" value="go-to-my-account"/>
 
-                    <input class="nav-button btn btn-default" type="submit" value="My Account"/>
+                    <input class="nav-button btn btn-primary" type="submit" value="My Account" disabled/>
                 </form>
             </div>
         </div>
@@ -65,7 +72,7 @@
     <input type="hidden" name="action" value="go-to-home"/>
     <input type="hidden" name="note" value="leaving-error"/>
 
-    <input type="submit" value="Return"/>
+    <input class="go-home-button btn btn-primary" type="submit" value="Return"/>
 </form>
 </body>
 </html>

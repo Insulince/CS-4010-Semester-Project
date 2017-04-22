@@ -53,15 +53,24 @@
         #item-wrapper {
             border: 3px solid #888888;
             margin-top: 15px;
-            padding: 10px;
+            padding: 25px;
             margin-bottom: 30px;
             background-color: #dddddd;
+        }
+
+        #details-container {
+            padding-right: 0;
+        }
+
+        #image-container {
+            padding-left: 0;
         }
 
         #details-wrapper {
             width: 100%;
             height: 50vh;
-            border: 1px solid black;
+            border: 2px solid #aaaaaa;
+            background-color: #eeeeee;
         }
 
         #price, #quantity {
@@ -117,7 +126,7 @@
                     <input type="hidden" name="userIdentifier" value="${user.identifier}"/>
                     <input type="hidden" name="action" value="go-to-store"/>
 
-                    <input class="nav-button btn btn-default" type="submit" value="Store"/>
+                    <input class="nav-button btn btn-primary" type="submit" value="Store"/>
                 </form>
             </div>
             <div class="col-md-3">
@@ -126,7 +135,7 @@
                     <input type="hidden" name="userIdentifier" value="${user.identifier}"/>
                     <input type="hidden" name="action" value="random"/>
 
-                    <input class="nav-button btn btn-default" type="submit" value="Random Item"/>
+                    <input class="nav-button btn btn-primary" type="submit" value="Random Item"/>
                 </form>
             </div>
             <div class="col-md-3">
@@ -135,7 +144,7 @@
                     <input type="hidden" name="userIdentifier" value="${user.identifier}"/>
                     <input type="hidden" name="action" value="go-to-my-cart"/>
 
-                    <input class="nav-button btn btn-default" type="submit" value="My Cart"/>
+                    <input class="nav-button btn btn-primary" type="submit" value="My Cart"/>
                 </form>
             </div>
             <div class="col-md-3">
@@ -144,7 +153,7 @@
                     <input type="hidden" name="userIdentifier" value="${user.identifier}"/>
                     <input type="hidden" name="action" value="go-to-my-account"/>
 
-                    <input class="nav-button btn btn-default" type="submit" value="My Account"/>
+                    <input class="nav-button btn btn-primary" type="submit" value="My Account"/>
                 </form>
             </div>
         </div>
@@ -190,12 +199,12 @@
             <div id="item-wrapper">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-5">
+                        <div id="image-container" class="col-md-5">
                             <div id="item-image-container">
                                 <img id="item-image" src="${pageContext.request.contextPath}/assets/images/${item.imageUrl}" alt="${item.name} image could not be loaded"/>
                             </div>
                         </div>
-                        <div class="col-md-7">
+                        <div id="details-container" class="col-md-7">
                             <div id="details-wrapper" class="container-fluid">
                                 <div class="row" id="price-quantity-container">
                                     <div class="col-md-6">
@@ -218,7 +227,7 @@
                                             <input type="hidden" name="itemIdentifier" value="${item.identifier}"/>
                                             <input type="hidden" name="action" value="add-to-cart-from-item"/>
 
-                                            <input class="cart-button nav-button btn btn-default" type="submit" value="Add to Cart" <c:if test="${item.quantity == 0}">disabled</c:if>/>
+                                            <input class="cart-button nav-button btn btn-<c:if test="${item.available}">success</c:if><c:if test="${!item.available}">danger</c:if>" type="submit" value="Add to Cart" <c:if test="${item.quantity == 0}">disabled</c:if>/>
                                         </form>
                                     </div>
                                     <div class="col-md-4">
@@ -227,7 +236,7 @@
                                             <input type="hidden" name="userIdentifier" value="${user.identifier}"/>
                                             <input type="hidden" name="action" value="go-to-my-cart"/>
 
-                                            <input class="cart-button nav-button btn btn-default" type="submit" value="View Cart"/>
+                                            <input class="cart-button nav-button btn btn-primary" type="submit" value="View Cart"/>
                                         </form>
                                     </div>
                                 </div>

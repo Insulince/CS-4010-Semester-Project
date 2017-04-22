@@ -69,7 +69,7 @@
                     <input type="hidden" name="userIdentifier" value="${user.identifier}"/>
                     <input type="hidden" name="action" value="go-to-store"/>
 
-                    <input class="nav-button btn btn-default" type="submit" value="Store"/>
+                    <input class="nav-button btn btn-primary" type="submit" value="Store"/>
                 </form>
             </div>
             <div class="col-md-3">
@@ -78,7 +78,7 @@
                     <input type="hidden" name="userIdentifier" value="${user.identifier}"/>
                     <input type="hidden" name="action" value="random"/>
 
-                    <input class="nav-button btn btn-default" type="submit" value="Random Item"/>
+                    <input class="nav-button btn btn-primary" type="submit" value="Random Item"/>
                 </form>
             </div>
             <div class="col-md-3">
@@ -87,7 +87,7 @@
                     <input type="hidden" name="userIdentifier" value="${user.identifier}"/>
                     <input type="hidden" name="action" value="go-to-my-cart"/>
 
-                    <input class="nav-button btn btn-default" type="submit" value="My Cart"/>
+                    <input class="nav-button btn btn-primary" type="submit" value="My Cart"/>
                 </form>
             </div>
             <div class="col-md-3">
@@ -96,7 +96,7 @@
                     <input type="hidden" name="userIdentifier" value="${user.identifier}"/>
                     <input type="hidden" name="action" value="go-to-my-account"/>
 
-                    <input class="nav-button btn btn-default" type="submit" value="My Account"/>
+                    <input class="nav-button btn btn-primary" type="submit" value="My Account"/>
                 </form>
             </div>
         </div>
@@ -117,7 +117,7 @@
 <div id="store-wrapper">
     <div class="container">
         <c:set var="i" value="${0}"/>
-        <c:forEach items="${inventory.items}" var="item">
+        <c:forEach items="${inventory}" var="item">
             <c:if test="${i % 4 == 0}">
                 <div class="row">
             </c:if>
@@ -147,7 +147,7 @@
                         <input type="hidden" name="action" value="add-to-cart-from-store"/>
                         <input type="hidden" name="itemIdentifier" value="${item.identifier}"/>
 
-                        <input class="add-to-cart-button btn btn-default" type="submit" value="Add to Cart" <c:if test="${!item.available}">disabled</c:if>/>
+                        <input class="add-to-cart-button btn btn-<c:if test="${item.available}">success</c:if><c:if test="${!item.available}">danger</c:if>" type="submit" value="Add to Cart" <c:if test="${!item.available}">disabled</c:if>/>
                     </form>
                 </div>
             </div>

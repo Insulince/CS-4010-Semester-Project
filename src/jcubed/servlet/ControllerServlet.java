@@ -1,7 +1,6 @@
 package jcubed.servlet;
 
 import jcubed.util.ForwardObject;
-import jcubed.bean.Inventory;
 import jcubed.bean.Item;
 import jcubed.bean.User;
 import jcubed.database.ItemDBController;
@@ -38,7 +37,7 @@ public class ControllerServlet extends HttpServlet {
                     }
                     break;
                     case "go-to-store": {
-                        request.setAttribute("inventory", new Inventory(ItemDBController.getItems()));
+                        request.setAttribute("inventory", ItemDBController.getItems());
                         FORWARD_TO.accept(new ForwardObject("./views/store.jsp", request, response));
                     }
                     break;
@@ -63,7 +62,7 @@ public class ControllerServlet extends HttpServlet {
                             request.setAttribute("item", nextItem);
                             FORWARD_TO.accept(new ForwardObject("./views/item.jsp", request, response));
                         } else {
-                            request.setAttribute("inventory", new Inventory(ItemDBController.getItems()));
+                            request.setAttribute("inventory", ItemDBController.getItems());
                             FORWARD_TO.accept(new ForwardObject("./views/store.jsp", request, response));
                         }
                     }
@@ -74,7 +73,7 @@ public class ControllerServlet extends HttpServlet {
                             request.setAttribute("item", previousItem);
                             FORWARD_TO.accept(new ForwardObject("./views/item.jsp", request, response));
                         } else {
-                            request.setAttribute("inventory", new Inventory(ItemDBController.getItems()));
+                            request.setAttribute("inventory", ItemDBController.getItems());
                             FORWARD_TO.accept(new ForwardObject("./views/store.jsp", request, response));
                         }
                     }
@@ -98,39 +97,53 @@ public class ControllerServlet extends HttpServlet {
                     }
                     break;
                     case "add-to-cart-from-store": {
-                        if (ItemDBController.addItemToCart(ItemDBController.getItemWithIdentifier(request.getParameter("itemIdentifier")), UserDBController.getUserWithIdentifier(request.getParameter("userIdentifier")))) {
+                        if (UserDBController.addItemToCart(ItemDBController.getItemWithIdentifier(request.getParameter("itemIdentifier")), UserDBController.getUserWithIdentifier(request.getParameter("userIdentifier")))) {
                             request.setAttribute("addedToCart", "yes");
                         } else {
                             request.setAttribute("addedToCart", "no");
                         }
                         request.setAttribute("requestedItem", ItemDBController.getItemWithIdentifier(request.getParameter("itemIdentifier")));
-                        request.setAttribute("inventory", new Inventory(ItemDBController.getItems()));
-                        request.setAttribute("user", UserDBController.getUserWithIdentifier(request.getParameter("userIdentifier"))); //Must be re-set so that the changes to the cart take effect.
+                        request.setAttribute("inventory", ItemDBController.getItems());
+                        request.setAttribute("user", UserDBController.getUserWithIdentifier(request.getParameter("userIdentifier"))); //Must be re-set so that the changes to the cart take effect immediately.
                         FORWARD_TO.accept(new ForwardObject("./views/store.jsp", request, response));
 
                     }
                     break;
                     case "add-to-cart-from-item": {
-                        if (ItemDBController.addItemToCart(ItemDBController.getItemWithIdentifier(request.getParameter("itemIdentifier")), UserDBController.getUserWithIdentifier(request.getParameter("userIdentifier")))) {
+                        if (UserDBController.addItemToCart(ItemDBController.getItemWithIdentifier(request.getParameter("itemIdentifier")), UserDBController.getUserWithIdentifier(request.getParameter("userIdentifier")))) {
                             request.setAttribute("addedToCart", "yes");
                         } else {
                             request.setAttribute("addedToCart", "no");
                         }
                         request.setAttribute("requestedItem", ItemDBController.getItemWithIdentifier(request.getParameter("itemIdentifier")));
                         request.setAttribute("item", ItemDBController.getItemWithIdentifier(request.getParameter("itemIdentifier")));
-                        request.setAttribute("user", UserDBController.getUserWithIdentifier(request.getParameter("userIdentifier"))); //Must be re-set so that the changes to the cart take effect.
+                        request.setAttribute("user", UserDBController.getUserWithIdentifier(request.getParameter("userIdentifier"))); //Must be re-set so that the changes to the cart take effect immediately.
                         FORWARD_TO.accept(new ForwardObject("./views/item.jsp", request, response));
                     }
                     break;
                     case "remove-item-from-cart": {
-                        if (ItemDBController.removeItemFromCart(ItemDBController.getItemWithIdentifier(request.getParameter("itemIdentifier")), UserDBController.getUserWithIdentifier(request.getParameter("userIdentifier")))) {
+                        if (UserDBController.removeItemFromCart(ItemDBController.getItemWithIdentifier(request.getParameter("itemIdentifier")), UserDBController.getUserWithIdentifier(request.getParameter("userIdentifier")))) {
                             request.setAttribute("removedFromCart", "yes");
                         } else {
                             request.setAttribute("removedFromCart", "no");
                         }
                         request.setAttribute("requestedItem", ItemDBController.getItemWithIdentifier(request.getParameter("itemIdentifier")));
-                        request.setAttribute("user", UserDBController.getUserWithIdentifier(request.getParameter("userIdentifier"))); //Must be re-set so that the changes to the cart take effect.
+                        request.setAttribute("user", UserDBController.getUserWithIdentifier(request.getParameter("userIdentifier"))); //Must be re-set so that the changes to the cart take effect immediately.
                         FORWARD_TO.accept(new ForwardObject("./views/my-cart.jsp", request, response));
+                    }
+                    break;
+                    case "go-to-checkout": {
+                        FORWARD_TO.accept(new ForwardObject("./views/checkout.jsp", request, response));
+                    }
+                    break;
+                    case "checkout": {
+                        if (request.getParameter("updateInformation") != null) {
+                            updateInformation(request);
+                        }
+                        request.setAttribute("orderedItems", currentUser.getCart());
+                        UserDBController.emptyCart(currentUser);
+                        request.setAttribute("user", currentUser); //Must be re-set so that the changes to the user's information and/or cart take effect immediately.
+                        FORWARD_TO.accept(new ForwardObject("./views/order-placed.jsp", request, response));
                     }
                     break;
                     default: {
@@ -179,6 +192,14 @@ public class ControllerServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
+    }
+
+    private void updateInformation(HttpServletRequest request) {
+        currentUser.setAddress(request.getParameter("address"));
+        currentUser.setCity(request.getParameter("city"));
+        currentUser.setState(request.getParameter("state"));
+        currentUser.setZipCode(request.getParameter("zip-code"));
+        UserDBController.updateUser(currentUser);
     }
 
     private void register(HttpServletRequest request, HttpServletResponse response) {

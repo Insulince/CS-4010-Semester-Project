@@ -1,6 +1,7 @@
 package jcubed.database;
 
 import com.google.gson.reflect.TypeToken;
+import jcubed.bean.Item;
 import jcubed.util.Lo;
 import jcubed.bean.User;
 import jcubed.util.GsonHelper;
@@ -11,6 +12,61 @@ import java.util.Arrays;
 public class UserDBController {
             private static final String PATH = "../webapps/j-cubed/database/users.json";
 //    private static final String PATH = "database/users.json";
+
+    public static synchronized boolean addItemToCart(Item item, User user) {
+        if (item != null) {
+            if (item.isAvailable()) {
+                int newQuantity = item.getQuantity();
+                --newQuantity;
+                item.setQuantity(newQuantity);
+                ItemDBController.updateItem(item);
+
+                ArrayList<Item> newCart = user.getCart();
+                newCart.add(item);
+                user.setCart(newCart);
+                updateUser(user);
+
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    public static synchronized boolean removeItemFromCart(Item item, User user) {
+        if (item != null) {
+            ArrayList<Item> usersCart = user.getCart();
+            int i = 0;
+            for (Item userItem : usersCart) {
+                if (userItem.getIdentifier().equals(item.getIdentifier())) {
+                    int newQuantity = item.getQuantity();
+                    ++newQuantity;
+                    item.setQuantity(newQuantity);
+                    ItemDBController.updateItem(item);
+
+                    ArrayList<Item> newCart = user.getCart();
+                    newCart.remove(i);
+                    user.setCart(newCart);
+                    updateUser(user);
+
+                    return true;
+                }
+                i++;
+            }
+
+            return false;
+        } else {
+            return false;
+        }
+    }
+
+    public static synchronized boolean emptyCart(User user) {
+        user.setCart(new ArrayList<>());
+
+        return updateUser(user);
+    }
 
     ///////////////////////// CREATE /////////////////////////
     public static synchronized boolean addUser(User newUser) {

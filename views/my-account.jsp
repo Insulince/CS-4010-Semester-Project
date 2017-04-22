@@ -5,14 +5,17 @@
 <head>
     ${sharedHeaderTags}
     <style>
-        #personal-info-wrapper {
-        }
-
-        #payment-info-wrapper {
-        }
-
         .suppressed {
             color: lightgrey;
+        }
+
+        .info-table {
+            border: solid 3px #aaaaaa;
+        }
+
+        .action-button {
+            height: 50px;
+            width: 10vw;
         }
     </style>
 </head>
@@ -34,7 +37,7 @@
                     <input type="hidden" name="userIdentifier" value="${user.identifier}"/>
                     <input type="hidden" name="action" value="go-to-store"/>
 
-                    <input class="nav-button btn btn-default" type="submit" value="Store"/>
+                    <input class="nav-button btn btn-primary" type="submit" value="Store"/>
                 </form>
             </div>
             <div class="col-md-3">
@@ -43,7 +46,7 @@
                     <input type="hidden" name="userIdentifier" value="${user.identifier}"/>
                     <input type="hidden" name="action" value="random"/>
 
-                    <input class="nav-button btn btn-default" type="submit" value="Random Item"/>
+                    <input class="nav-button btn btn-primary" type="submit" value="Random Item"/>
                 </form>
             </div>
             <div class="col-md-3">
@@ -52,7 +55,7 @@
                     <input type="hidden" name="userIdentifier" value="${user.identifier}"/>
                     <input type="hidden" name="action" value="go-to-my-cart"/>
 
-                    <input class="nav-button btn btn-default" type="submit" value="My Cart"/>
+                    <input class="nav-button btn btn-primary" type="submit" value="My Cart"/>
                 </form>
             </div>
             <div class="col-md-3">
@@ -61,7 +64,7 @@
                     <input type="hidden" name="userIdentifier" value="${user.identifier}"/>
                     <input type="hidden" name="action" value="go-to-my-account"/>
 
-                    <input class="nav-button btn btn-default" type="submit" value="My Account"/>
+                    <input class="nav-button btn btn-primary" type="submit" value="My Account"/>
                 </form>
             </div>
         </div>
@@ -74,7 +77,7 @@
     <div class="row">
         <div class="col-md-5 col-md-offset-1">
             <div id="personal-info-wrapper">
-                <table class="table table-striped table-bordered table-hover">
+                <table class="info-table table table-striped table-bordered table-hover">
                     <tr>
                         <th colspan="2">Personal Information</th>
                     </tr>
@@ -115,7 +118,7 @@
         </div>
         <div class="col-md-5">
             <div id="payment-info-wrapper">
-                <table class="table table-striped table-bordered table-hover">
+                <table class="info-table table table-striped table-bordered table-hover">
                     <tr>
                         <th colspan="2">Payment & Shipping Information</th>
                     </tr>
@@ -145,6 +148,25 @@
                     </tr>
                 </table>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <form action="./" method="get">
+                <input type="hidden" name="identifier" value="${identifier}"/>
+                <input type="hidden" name="userIdentifier" value="${user.identifier}"/>
+                <input type="hidden" name="action" value="edit-my-account"/>
+
+                <input class="action-button btn btn-primary" type="submit" value="Edit Information"/>
+            </form>
+
+            <form action="./" method="get">
+                <input type="hidden" name="identifier" value="${identifier}"/>
+                <input type="hidden" name="userIdentifier" value="${user.identifier}"/>
+                <input type="hidden" name="action" value="logout"/>
+
+                <input class="action-button btn btn-danger" type="submit" value="Logout"/>
+            </form>
         </div>
     </div>
 </div>
