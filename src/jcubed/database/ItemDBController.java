@@ -8,10 +8,12 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class ItemDBController {
-    private static final String PATH = "../webapps/j-cubed/database/items.json";
-//    private static final String PATH = "database/items.json";
+    private static final String PATH = "../webapps/j-cubed/database/items.json"; //For using Tomcat.
+//    private static final String PATH = "database/items.json"; //For using main function.
 
     public static void main(String[] args) {
+        //Run this to restore the item database to its initial state. You need to uncomment the "main function" path variable above and comment out the "Tomcat" variable for it to work right. Don't forget to put it back after.
+
         addItem(new Item("1x1 Pyraminx", 2.99, 10, "The smallest and most trivial of the pyramidal puzzles. Comes pre-solved!", "pyraminx-1x1.jpg"));
         addItem(new Item("2x2 Pyraminx", 12.99, 4, "While this puzzle is possible to \"scramble\", you will find that there are only three moving parts and should be able to solve it very easilly! Still a great addition for collectors!", "pyraminx-2x2.jpg"));
         addItem(new Item("Original Pyraminx (3x3 Pyraminx)", 7.19, 12, "The traditional Pyraminx puzzle. It turns on its 4 exes stemming inwards from each tip of the puzzle. Watch as the pieces get quickly mixed up and try to put them back!", "pyraminx.jpg"));

@@ -16,10 +16,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.function.Consumer;
 
-@SuppressWarnings("Duplicates")
 public class ControllerServlet extends HttpServlet {
     private static final Consumer<ForwardObject> FORWARD_TO = ForwardObject::forwardTo;
-    private static final long startOfFeatureCycleDate = new Date(1492837200000L).getTime() / 86400000; //Days between 1970-01-01 12:00:00AM and 2017-04-22 12:00:00AM
+    private static final long startOfFeatureCycleDate = new Date(1492855200000L).getTime() / 86400000; //Days between 1970-01-01 12:00:00AM UTC and 2017-04-22 12:00:00AM CST
     private static User currentUser;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

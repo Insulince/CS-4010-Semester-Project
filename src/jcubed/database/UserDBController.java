@@ -2,16 +2,13 @@ package jcubed.database;
 
 import com.google.gson.reflect.TypeToken;
 import jcubed.bean.Item;
-import jcubed.util.Lo;
 import jcubed.bean.User;
 import jcubed.util.GsonHelper;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class UserDBController {
-            private static final String PATH = "../webapps/j-cubed/database/users.json";
-//    private static final String PATH = "database/users.json";
+    private static final String PATH = "../webapps/j-cubed/database/users.json";
 
     public static synchronized boolean addItemToCart(Item item, User user) {
         if (item != null) {
@@ -72,11 +69,6 @@ public class UserDBController {
     public static synchronized boolean addUser(User newUser) {
         ArrayList<User> users = getUsers();
         return users.add(newUser) && GsonHelper.saveObjectsToFile(users, PATH);
-    }
-
-    public static void main(String[] args) {
-        Lo.g(getUserWithIdentifier("asdf").toString());
-        Lo.g(Arrays.toString(getUsers().toArray()));
     }
 
     ///////////////////////// READ /////////////////////////
