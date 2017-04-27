@@ -125,7 +125,7 @@
                 <div class="item-wrapper">
                     <a class="item-link" href="./?identifier=${identifier}&userIdentifier=${user.identifier}&action=view-item&itemIdentifier=${item.identifier}">
                         <div class="item-image-container">
-                            <img class="item-image" src="${pageContext.request.contextPath}/assets/images/${item.imageUrl}" alt="${item.name} image could not be loaded"/>
+                            <img class="item-image" src="http://hoare.cs.umsl.edu/servlet/j-reusnow/assets/images/${item.imageUrl}" alt="${item.name} image could not be loaded"/>
                         </div>
                         <p>${item.name}</p>
                         <p>$${item.price}</p>

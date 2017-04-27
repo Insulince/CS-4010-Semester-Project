@@ -8,7 +8,7 @@ import jcubed.util.GsonHelper;
 import java.util.ArrayList;
 
 public class UserDBController {
-    private static final String PATH = "../webapps/j-cubed/database/users.json";
+    private static final String PATH = "/usr/share/tomcat/webapps/j-reusnow/database/users.json";
 
     public static synchronized boolean addItemToCart(Item item, User user) {
         if (item != null) {
@@ -89,9 +89,11 @@ public class UserDBController {
     }
 
     public static synchronized User getUserWithUsername(String username) {
-        for (User user : getUsers()) {
-            if (username.equals(user.getUsername())) {
-                return user;
+        if (getUsers() != null) {
+            for (User user : getUsers()) {
+                if (username.equals(user.getUsername())) {
+                    return user;
+                }
             }
         }
 

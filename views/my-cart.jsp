@@ -164,12 +164,12 @@
                         <td>$${item.price}</td>
                         <td>
                             <div class="item-image-container">
-                                <img class="item-image" src="${pageContext.request.contextPath}/assets/images/${item.imageUrl}" alt="${item.name} image could not be loaded"/>
+                                <img class="item-image" src="http://hoare.cs.umsl.edu/servlet/j-reusnow/assets/images/${item.imageUrl}" alt="${item.name} image could not be loaded"/>
                             </div>
                         </td>
                         <td class="remove-column">
                             <a href="./?identifier=${identifier}&userIdentifier=${user.identifier}&action=remove-item-from-cart&itemIdentifier=${item.identifier}">
-                                <img class="remove-img" src="${pageContext.request.contextPath}/assets/images/x.png" alt="x.png could not be loaded."/>
+                                <img class="remove-img" src="http://hoare.cs.umsl.edu/servlet/j-reusnow/assets/images/x.png" alt="x.png could not be loaded."/>
                             </a>
                         </td>
                     </tr>

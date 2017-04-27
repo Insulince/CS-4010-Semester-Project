@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class ItemDBController {
-    private static final String PATH = "../webapps/j-cubed/database/items.json"; //For using Tomcat.
+    private static final String PATH = "/usr/share/tomcat/webapps/j-reusnow/database/items.json"; //For using Tomcat.
 //    private static final String PATH = "database/items.json"; //For using main function.
 
     public static void main(String[] args) {

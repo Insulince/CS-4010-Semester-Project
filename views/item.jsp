@@ -201,7 +201,7 @@
                     <div class="row">
                         <div id="image-container" class="col-md-5">
                             <div id="item-image-container">
-                                <img id="item-image" src="${pageContext.request.contextPath}/assets/images/${item.imageUrl}" alt="${item.name} image could not be loaded"/>
+                                <img id="item-image" src="http://hoare.cs.umsl.edu/servlet/j-reusnow/assets/images/${item.imageUrl}" alt="${item.name} image could not be loaded"/>
                             </div>
                         </div>
                         <div id="details-container" class="col-md-7">
