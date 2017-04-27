@@ -128,11 +128,13 @@ public class SessionServlet extends HttpServlet {
     private static void removeSession(Session currentSession) {
         int i = 0;
         int removeIndex = -1;
-        for (Session session : SESSIONS) {
-            if (session.getIdentifier().equals(currentSession.getIdentifier())) {
-                removeIndex = i;
+        if (currentSession != null) {
+            for (Session session : SESSIONS) {
+                if (session.getIdentifier().equals(currentSession.getIdentifier())) {
+                    removeIndex = i;
+                }
+                i++;
             }
-            i++;
         }
 
         SESSIONS.remove(removeIndex);
