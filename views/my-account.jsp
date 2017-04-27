@@ -29,6 +29,10 @@
         .content {
             padding-top: 15px;
         }
+
+        .buttons {
+            margin-bottom: 150px;
+        }
     </style>
     <script>
         function validateForm() {
@@ -357,7 +361,7 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="container-fluid">
-                <div class="row">
+                <div class="row buttons">
                     <div class="col-md-6">
                         <c:choose>
                             <c:when test='${mode == "view"}'>

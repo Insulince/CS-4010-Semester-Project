@@ -84,6 +84,11 @@
         .left-align * {
             text-align: left;
         }
+
+        .showcase-link {
+            margin-top: 50px;
+            margin-bottom: 150px;
+        }
     </style>
 </head>
 <body>
@@ -224,6 +229,11 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 showcase-link">
+                        <a href="http://hoare.cs.umsl.edu/servlet/j-reusnow/showcase/index.html"><h3>Click here for the code showcase</h3></a>
                     </div>
                 </div>
             </div>
