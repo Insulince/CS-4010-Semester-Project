@@ -1,1 +1,68 @@
-[{"identifier":"VatdGrpiLpYEhowiHzZJCmzunVlqDCuE","username":"justin","password":"swag","email":"justinreusnow@gmail.com","cart":[{"id":22,"identifier":"tFZeXMizeQokgefgzSepjcbGHoZzkpvO","name":"Petaminx (9x9 Megaminx)","price":207.79,"quantity":0,"description":"At five orders of magnitude larger than the original Megaminx, this puzzle has 1,212 stickers.","available":false,"imageUrl":"petaminx.jpg","previousIdentifier":"RBEnMcsANKnBEDHgDMbanfNceUlRKuUB","nextIdentifier":"ccQcZrbIXpOtuUqKERsBHJdUmMXDeiEe"},{"id":6,"identifier":"DXdZnillhFSqbMDCkfpTBDqVhYpEuNLF","name":"1x1 Cube","price":2.99,"quantity":8,"description":"The smallest and most trivial of the cubic puzzles. Comes pre-solved!","available":true,"imageUrl":"1x1.jpg","previousIdentifier":"fUszjkGEQJzyITyKCfBZZwRWXqjVeHiV","nextIdentifier":"ajTVYiekhelLssyCBpJyvNuBeiwGYIYb"},{"id":6,"identifier":"DXdZnillhFSqbMDCkfpTBDqVhYpEuNLF","name":"1x1 Cube","price":2.99,"quantity":7,"description":"The smallest and most trivial of the cubic puzzles. Comes pre-solved!","available":true,"imageUrl":"1x1.jpg","previousIdentifier":"fUszjkGEQJzyITyKCfBZZwRWXqjVeHiV","nextIdentifier":"ajTVYiekhelLssyCBpJyvNuBeiwGYIYb"},{"id":6,"identifier":"DXdZnillhFSqbMDCkfpTBDqVhYpEuNLF","name":"1x1 Cube","price":2.99,"quantity":6,"description":"The smallest and most trivial of the cubic puzzles. Comes pre-solved!","available":true,"imageUrl":"1x1.jpg","previousIdentifier":"fUszjkGEQJzyITyKCfBZZwRWXqjVeHiV","nextIdentifier":"ajTVYiekhelLssyCBpJyvNuBeiwGYIYb"}],"firstName":"","middleName":"","lastName":"","dateOfBirth":"","gender":"","address":"sdf","city":"sfd","state":"asdf","zipCode":"65432","creditCardNumber":""}]
+[
+  {
+    "identifier": "VatdGrpiLpYEhowiHzZJCmzunVlqDCuE",
+    "username": "justin",
+    "password": "swag",
+    "email": "justinreusnow@gmail.com",
+    "cart": [
+      {
+        "id": 22,
+        "identifier": "tFZeXMizeQokgefgzSepjcbGHoZzkpvO",
+        "name": "Petaminx (9x9 Megaminx)",
+        "price": 207.79,
+        "quantity": 0,
+        "description": "At five orders of magnitude larger than the original Megaminx, this puzzle has 1,212 stickers.",
+        "available": false,
+        "imageUrl": "petaminx.jpg",
+        "previousIdentifier": "RBEnMcsANKnBEDHgDMbanfNceUlRKuUB",
+        "nextIdentifier": "ccQcZrbIXpOtuUqKERsBHJdUmMXDeiEe"
+      },
+      {
+        "id": 6,
+        "identifier": "DXdZnillhFSqbMDCkfpTBDqVhYpEuNLF",
+        "name": "1x1 Cube",
+        "price": 2.99,
+        "quantity": 8,
+        "description": "The smallest and most trivial of the cubic puzzles. Comes pre-solved!",
+        "available": true,
+        "imageUrl": "1x1.jpg",
+        "previousIdentifier": "fUszjkGEQJzyITyKCfBZZwRWXqjVeHiV",
+        "nextIdentifier": "ajTVYiekhelLssyCBpJyvNuBeiwGYIYb"
+      },
+      {
+        "id": 6,
+        "identifier": "DXdZnillhFSqbMDCkfpTBDqVhYpEuNLF",
+        "name": "1x1 Cube",
+        "price": 2.99,
+        "quantity": 7,
+        "description": "The smallest and most trivial of the cubic puzzles. Comes pre-solved!",
+        "available": true,
+        "imageUrl": "1x1.jpg",
+        "previousIdentifier": "fUszjkGEQJzyITyKCfBZZwRWXqjVeHiV",
+        "nextIdentifier": "ajTVYiekhelLssyCBpJyvNuBeiwGYIYb"
+      },
+      {
+        "id": 6,
+        "identifier": "DXdZnillhFSqbMDCkfpTBDqVhYpEuNLF",
+        "name": "1x1 Cube",
+        "price": 2.99,
+        "quantity": 6,
+        "description": "The smallest and most trivial of the cubic puzzles. Comes pre-solved!",
+        "available": true,
+        "imageUrl": "1x1.jpg",
+        "previousIdentifier": "fUszjkGEQJzyITyKCfBZZwRWXqjVeHiV",
+        "nextIdentifier": "ajTVYiekhelLssyCBpJyvNuBeiwGYIYb"
+      }
+    ],
+    "firstName": "",
+    "middleName": "",
+    "lastName": "",
+    "dateOfBirth": "",
+    "gender": "",
+    "address": "sdf",
+    "city": "sfd",
+    "state": "asdf",
+    "zipCode": "65432",
+    "creditCardNumber": ""
+  }
+]

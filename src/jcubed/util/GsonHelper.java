@@ -28,7 +28,7 @@ public class GsonHelper {
         return false;
     }
 
-    public static ArrayList getObjectsFromFile(String filePath, Type objectType) {
+    public static synchronized ArrayList getObjectsFromFile(String filePath, Type objectType) {
         try {
             JsonReader reader = new JsonReader(new FileReader(filePath));
             return GSON.fromJson(reader, objectType);

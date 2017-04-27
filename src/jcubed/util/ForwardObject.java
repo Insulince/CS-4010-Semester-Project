@@ -34,8 +34,7 @@ public class ForwardObject {
 
         try {
             requestDispatcher.forward(this.request, this.response);
-        } catch (final ServletException
-                | IOException e) {
+        } catch (final ServletException | IOException e) {
             e.printStackTrace();
         }
     }

@@ -5,8 +5,8 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 public class Session {
-    public static final long ACTIVE_TIME_LIMIT = 15000;
-    public static final long CREATION_TIME_LIMIT = 30000;
+    public static final long ACTIVE_TIME_LIMIT = 30;
+    public static final long CREATION_TIME_LIMIT = 720;
     public static final int SESSION_IDENTIFIER_LENGTH = 32;
 
     private final String identifier;
@@ -29,6 +29,10 @@ public class Session {
 
     public Date getLastActiveDate() {
         return this.lastActiveDate;
+    }
+
+    public void setLastActiveDate(Date lastActiveDate) {
+        this.lastActiveDate = lastActiveDate;
     }
 
     private static String generateRandomIdentifier() {

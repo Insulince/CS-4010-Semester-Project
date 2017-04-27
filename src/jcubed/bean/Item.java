@@ -129,19 +129,6 @@ public class Item implements Serializable {
         this.nextIdentifier = nextIdentifier;
     }
 
-    @Override
-    public String toString() {
-        return "Item{" +
-                "identifier=\"" + identifier + "\"" +
-                ", name=\"" + name + "\"" +
-                ", price=" + price +
-                ", quantity=" + quantity +
-                ", description=\"" + description + "\"" +
-                ", available=" + available +
-                ", imageUrl=\"" + imageUrl + "\"" +
-                "}";
-    }
-
     private static String generateRandomIdentifier() {
         boolean unique = false;
         String identifier = "";

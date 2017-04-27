@@ -59,6 +59,9 @@ public class SessionServlet extends HttpServlet {
             } else {
                 Lo.g("This session is invalid, so we cannot authorize this user.");
 
+                removeSession(currentSession);
+                currentSession = null;
+
                 String note = request.getParameter("note");
                 if (note == null || !note.equals("leaving-error")) {
                     Lo.g("Forwarding to \"./views/error.jsp\".");
@@ -81,8 +84,10 @@ public class SessionServlet extends HttpServlet {
         currentSession = findSession(identifier);
 
         if (currentSession != null) {
-            if (Math.floor(new Date().getTime() / 18000000 - currentSession.getLastActiveDate().getTime() / 18000000) < Session.ACTIVE_TIME_LIMIT) {
-                if (Math.floor(new Date().getTime() / 18000000 - currentSession.getCreationDate().getTime() / 18000000) < Session.CREATION_TIME_LIMIT) {
+            if (Math.floor(new Date().getTime() / 60000 - currentSession.getLastActiveDate().getTime() / 60000) < Session.ACTIVE_TIME_LIMIT) {
+                if (Math.floor(new Date().getTime() / 60000 - currentSession.getCreationDate().getTime() / 60000) < Session.CREATION_TIME_LIMIT) {
+                    currentSession.setLastActiveDate(new Date());
+
                     Lo.g("The session was located and is not expired, so it is valid.");
                     return true;
                 } else {
@@ -118,5 +123,18 @@ public class SessionServlet extends HttpServlet {
         SESSIONS.add(newSession);
         currentSession = newSession;
         Lo.g(" done.");
+    }
+
+    private static void removeSession(Session currentSession) {
+        int i = 0;
+        int removeIndex = -1;
+        for (Session session : SESSIONS) {
+            if (session.getIdentifier().equals(currentSession.getIdentifier())) {
+                removeIndex = i;
+            }
+            i++;
+        }
+
+        SESSIONS.remove(removeIndex);
     }
 }
